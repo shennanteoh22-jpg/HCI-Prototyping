@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Successful - Brian PC Component</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- HEADER -->
+    <header class="header">
+    <div class="header-left">
+        <button class="hamburger-menu" onclick="openMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </div>
+    
+    <div class="header-center">
+        <a href="index.html" class="system-name">Brian PC Component</a>
+    </div>
+    
+    <div class="header-right">
+        <div class="search-container">
+            <input type="text" id="searchInput" class="search-input" placeholder="">
+<button class="search-btn" onclick="goSearch()">🔍</button>
+        </div>
+
+        <div class="icon-container">
+
+            <!--  CART -->
+            <a href="cart.html" class="cart-btn">
+                🛒
+                <span class="badge">2</span>
+            </a>
+
+            <!-- USER -->
+            <button class="user-btn" onclick="openLogin()">
+                👤
+                <span class="badge">1</span>
+            </button>
+
+        </div>
+    </div>
+</header>
+
+<main class="payment-page">
+    <div class="payment-container">
+        <div class="payment-result-box success">
+            <!-- ICON -->
+            <div class="payment-icon success">
+                <svg viewBox="0 0 100 100" width="100" height="100">
+                    <circle cx="50" cy="50" r="45" fill="none" stroke="#28A745" stroke-width="3"/>
+                    <path d="M 30 50 L 45 65 L 70 35" fill="none" stroke="#28A745" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
+
+            <!-- TITLE -->
+            <h2 class="payment-title success">Yeah! Payment successful !!!</h2>
+
+            <!-- MESSAGE -->
+            <p class="payment-message">
+                Your payment has been processed successfully. Thank you for your order!
+                We will send you a confirmation email shortly.
+            </p>
+
+            <!-- ORDER SUMMARY -->
+            <div class="order-summary-details">
+                <div class="summary-row">
+                    <span class="label">Amount</span>
+                    <span class="value">RM (x.xx)</span>
+                </div>
+                <div class="summary-row">
+                    <span class="label">Order ID</span>
+                    <span class="value">xxxxxxxx</span>
+                </div>
+                <div class="summary-row">
+                    <span class="label">Payment Method</span>
+                    <span class="value">E-Wallet</span>
+                </div>
+                <div class="summary-row">
+                    <span class="label">Email</span>
+                    <span class="value">xxxxxx@gmail.com</span>
+                </div>
+            </div>
+
+            <!-- ACTIONS -->
+            <div class="payment-actions">
+                <button class="btn-download-receipt" onclick="downloadReceipt()">
+                    📥 Download Receipt
+                </button>
+                <button class="btn-view-order" onclick="window.location.href='order-receipt.html'">
+                    View Order Details
+                </button>
+                <button class="btn-back-home" onclick="window.location.href='index.html'">
+                    Back to Main Page
+                </button>
+            </div>
+        </div>
+    </div>
+</main>
+
+<!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section footer-customer-service">
+                <h3>Customer Service</h3>
+                <ul>
+                    <li><a href="#">Help Centre</a></li>
+                    <li><a href="#">How to Buy</a></li>
+                    <li><a href="#">Refund & Return</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section footer-brands">
+                <h3>Brands</h3>
+                <ul>
+                    <li><a href="product-list.html?search=asus"</a></li>
+                    <li><a href="product-list.html?search=msi"</a></li>
+                    <li><a href="product-list.html?search=razer"</a></li>
+                    <li><a href="product-list.html?search=amd"</a></li>
+                    <li><a href="product-list.html?search=intel"</a></li>
+                    <li><a href="product-list.html?search=nvidia"</a></li>
+                    <li><a href="product-list.html?search=gigabite"</a></li>
+                    <li><a href="product-list.html?search=logitech"</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section footer-payment">
+                <h3>Payment Method</h3>
+                <div class="logo-grid">
+                    <div class="logo-placeholder">logo</div>
+                    <div class="logo-placeholder">logo</div>
+                    <div class="logo-placeholder">logo</div>
+                    <div class="logo-placeholder">logo</div>
+                    <div class="logo-placeholder">logo</div>
+                    <div class="logo-placeholder">logo</div>
+                    <div class="logo-placeholder">logo</div>
+                    <div class="logo-placeholder">logo</div>
+                </div>
+                <h3 style="margin-top: 20px;">LOGISTICS</h3>
+                <div class="logo-grid">
+                    <div class="logo-placeholder">logo</div>
+                    <div class="logo-placeholder">logo</div>
+                    <div class="logo-placeholder">logo</div>
+                    <div class="logo-placeholder">logo</div>
+                    <div class="logo-placeholder">logo</div>
+                    <div class="logo-placeholder">logo</div>
+                    <div class="logo-placeholder">logo</div>
+                    <div class="logo-placeholder">logo</div>
+                </div>
+            </div>
+
+            <div class="footer-section footer-review">
+                <h3>Follow us</h3>
+                <div class="social-logos">
+                    <div class="logo-placeholder">logo</div>
+                    <div class="logo-placeholder">logo</div>
+                    <div class="logo-placeholder">logo</div>
+                    <div class="logo-placeholder">logo</div>
+                </div>
+                <p class="review-text">Leave a review to us:</p>
+                <textarea class="review-box" placeholder=""></textarea>
+                <button class="submit-btn">Submit</button>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>Copyright 2026.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        function downloadReceipt() {
+            alert('Receipt download functionality to be implemented');
+            // Will implement actual download functionality
+        }
+    </script>
+</body>
+</html>

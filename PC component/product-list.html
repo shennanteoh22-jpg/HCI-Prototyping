@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Brian PC Component</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+
+
+<!-- HEADER -->
+<header class="header">
+    <div class="header-left" onclick="openMenu()" style="cursor:pointer;">☰</div>
+
+    <div class="header-center"><a href="index.html" class="system-name">Brian PC Component</a></div>
+
+  <div class="header-right">
+    <div class="search-container">
+      <input id="searchInput" type="text"
+onkeydown="if(event.key==='Enter') searchProduct()">
+
+<button onclick="searchProduct()">🔍</button>
+    </div>
+
+    <div class="icon-group">
+      <div class="icon">
+        <a href="cart.html">🛒<span class="badge cart-badge">0</span></a>
+      </div>
+      <div class="icon" id="userIcon" style="cursor:pointer;">👤</div>
+    </div>
+  </div>
+</header>
+
+<!-- FILTER BAR（完全照图） -->
+<div class="filter-bar">
+
+  <div class="filter-left">
+    <span>sort by:</span>
+
+    <select id="sortName">
+      <option value="">name</option>
+      <option value="name_asc">name: A to Z</option>
+      <option value="name_desc">name: Z to A</option>
+    </select>
+
+    <select id="sortPrice">
+      <option value="">price</option>
+      <option value="price_low_high">price: LOW to HIGH</option>
+      <option value="price_high_low">price: HIGH to LOW</option>
+    </select>
+  </div>
+
+  <div class="filter-right"></div>
+
+</div>
+
+<!-- MAIN -->
+<main class="product-main">
+
+  <!-- HEADING ROW: title left, ← 1 2 3 → nav top-right -->
+  <div class="product-heading-row">
+    <h2 class="products-heading">Product</h2>
+  </div>
+  <div class="product-divider"></div>
+
+  <!-- PRODUCTS GRID – populated dynamically by renderProductList() in script.js -->
+  <div class="products-grid1" id="productGrid"></div>
+
+  <!-- PAGINATION – centered below grid -->
+  <div class="pagination" id="pgNav"></div>
+
+</main>
+
+<!-- FOOTER ------------------------------------------------------------------------------------------------------------------>
+<footer class="footer">
+  <div class="footer-content">
+
+    <!-- CUSTOMER -->
+    <div class="footer-box">
+      <h3>Customer Service</h3>
+      <a href="#">Help Centre</a>
+      <a href="#">How to Buy</a>
+      <a href="#">Refund & Return</a>
+      <a href="#">Contact Us</a>
+    </div>
+
+    <!-- BRANDS -->
+    <div class="footer-box">
+      <h3>Brands</h3>
+      <a href="product-list.html?search=asus">Asus</a>
+      <a href="product-list.html?search=msi">Msi</a>
+      <a href="product-list.html?search=razer">Razer</a>
+      <a href="product-list.html?search=amd">Amd</a>
+      <a href="product-list.html?search=intel">Intel</a>
+      <a href="product-list.html?search=nvidia">Nvidia</a>
+      <a href="product-list.html?search=gigabite">Gigabite</a>
+      <a href="product-list.html?search=logitech">Logitech</a>
+    </div>
+
+    <!-- PAYMENT -->
+    <div class="footer-box">
+      <h3>Payment Method</h3>
+
+      <div class="logo-grid">
+        <div>logo</div><div>logo</div><div>logo</div><div>logo</div>
+        <div>logo</div><div>logo</div><div>logo</div><div>logo</div>
+      </div>
+
+      <h4>Logistics</h4>
+
+      <div class="logo-grid">
+        <div>logo</div><div>logo</div><div>logo</div>
+        <div>logo</div><div>logo</div>
+      </div>
+    </div>
+
+    <!-- FOLLOW -->
+    <div class="footer-box">
+      <h3>Follow us</h3>
+
+      <div class="logo-row">
+        <div>logo</div>
+        <div>logo</div>
+        <div>logo</div>
+        <div>logo</div>
+      </div>
+
+      <p>Leave a review to us:</p>
+
+      <div class="review-box">
+        <textarea placeholder="text box"></textarea>
+        <button class="submit-btn">Submit</button>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    Copyright 2026.
+  </div>
+</footer>
+<!-- search -->
+<script>
+function clearFilters() {
+    if (document.getElementById("sortName"))  document.getElementById("sortName").value  = "";
+    if (document.getElementById("sortPrice")) document.getElementById("sortPrice").value = "";
+    window.location.href = "product-list.html";
+}
+document.addEventListener("DOMContentLoaded", function() {
+    const params = new URLSearchParams(window.location.search);
+    const keyword = params.get("search") || "";
+    const headerSearch = document.getElementById("searchInput");
+    if (headerSearch && keyword) headerSearch.value = keyword;
+    // renderProductList() + sort listeners are set up in script.js DOMContentLoaded
+});
+</script>
+
+<!-- SIDE MENU -->
+<div class="overlay" id="overlay" onclick="closeMenu()"></div>
+<div class="side-menu" id="sideMenu">
+    <div class="menu-header">
+        <span>Menu</span>
+        <span class="close-btn" onclick="closeMenu()">✕</span>
+    </div>
+    <div class="menu-item" onclick="location.href='index.html'" style="cursor:pointer;">🏠 home</div>
+    <div class="menu-item" onclick="toggleDropdown('favDropdown')" style="cursor:pointer;">❤ favorites ▾</div>
+    <div class="dropdown" id="favDropdown">
+        <div id="favoritesPanel"><div style="padding:8px 16px;color:#888;font-size:13px;">No favorites yet</div></div>
+    </div>
+    <div class="menu-item" onclick="location.href='cart.html'" style="cursor:pointer;">🛒 cart</div>
+    <div class="menu-item" onclick="toggleDropdown('catDropdown')">☰ categories ▾</div>
+    <div class="dropdown" id="catDropdown">
+        <div onclick="location.href='product-list.html'">All Products</div>
+        <div onclick="location.href='product-list.html?search=gpu'">GPU</div>
+        <div onclick="location.href='product-list.html?search=keyboard'">Keyboard</div>
+        <div onclick="location.href='product-list.html?search=monitor'">Monitor</div>
+    </div>
+    <div class="menu-item" onclick="toggleDropdown('brandDropdown')">☰ brands ▾</div>
+    <div class="dropdown" id="brandDropdown">
+        <div onclick="location.href='product-list.html?search=asus'">asus</div>
+        <div onclick="location.href='product-list.html?search=msi'">msi</div>
+        <div onclick="location.href='product-list.html?search=razer'">razer</div>
+        <div onclick="location.href='product-list.html?search=nvidia'">nvidia</div>
+    </div>
+</div>
+
+<!-- LOGIN POPUP -->
+<div class="login-overlay" id="loginOverlay" onclick="closeLogin()"></div>
+<div class="login-popup" id="loginPopup">
+    <button class="login-close" onclick="closeLogin()">✕</button>
+    <h2>Login</h2>
+    <label>Email:</label>
+    <div class="password-box"><input type="email" id="loginEmail" placeholder="E.g. user@gmail.com"></div>
+    <label>Password:</label>
+    <div class="password-box">
+        <input type="password" id="loginPasswordInput" placeholder="Enter your password">
+        <span onclick="togglePassword('loginPasswordInput')">👁</span>
+    </div>
+    <div class="forgot">Forget Password?</div>
+    <button class="login-btn" onclick="doLogin()">Login</button>
+    <div class="divider1"><span>or continue with</span></div>
+    <button class="social-btn google" onclick="doGoogleLogin()">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg">
+        google login
+    </button>
+    <button class="social-btn apple" onclick="doAppleLogin()">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apple/apple-original.svg">
+        apple login
+    </button>
+    <div class="signup-text">
+        Don't have an account? <span onclick="goSignup()" style="cursor:pointer;text-decoration:underline;">Sign Up</span>
+    </div>
+</div>
+
+<!-- SIGNUP POPUP -->
+<div class="signup-overlay" id="signupOverlay"></div>
+<div class="signup-popup" id="signupPopup">
+    <button class="signup-close" onclick="closeSignup()">✕</button>
+    <h2>Signup</h2>
+    <label>Email:</label>
+    <div class="password-row"><input type="email" id="signupEmailInput" placeholder="E.g. user@gmail.com"></div>
+    <label>Password:</label>
+    <div class="password-row">
+        <input type="password" id="signupPasswordInput" placeholder="Enter your password" oninput="checkPasswordRules(this.value)">
+        <span class="eye" onclick="togglePassword('signupPasswordInput')">👁</span>
+    </div>
+    <div class="password-rules">
+        <label><input type="checkbox"> 8-16 characters</label>
+        <label><input type="checkbox"> At least 1 special character</label>
+        <label><input type="checkbox"> At least 1 uppercase letter</label>
+        <label><input type="checkbox"> At least 1 lowercase letter</label>
+        <label><input type="checkbox"> At least 1 number</label>
+    </div>
+    <label>Confirm password:</label>
+    <div class="password-row">
+        <input type="password" id="confirmPassword" placeholder="Confirm your password">
+        <span class="eye" onclick="togglePassword('confirmPassword')">👁</span>
+    </div>
+    <button class="signup-btn" onclick="doSignup()">Sign Up</button>
+    <div class="login-text">
+        Already have an account? <span onclick="goLogin()" style="cursor:pointer;">Login</span>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

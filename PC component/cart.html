@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product List - Brian PC Component</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- HEADER -->
+<header class="header">
+
+    <div class="header-left">
+        <span class="back-arrow" onclick="history.back()" style="cursor:pointer;">←</span>
+    </div>
+
+    <div class="header-center"><a href="index.html" class="system-name">Brian PC Component</a></div>
+
+    <div class="header-right">
+    <div class="search-container">
+        <input id="searchInput" type="text" placeholder="Search" onkeydown="if(event.key==='Enter') searchProduct()">
+        <button onclick="searchProduct()">🔍</button>
+    
+</div>
+
+        <div class="icon"><a href="cart.html">🛒<span class="badge cart-badge">0</span></a></div>
+        <div class="icon" id="userIcon" style="cursor:pointer;">👤</div>
+    </div>
+</header>
+
+    <!-- MAIN CONTENT -->
+    <main class="cart-page">
+
+    <h2 class="cart-title">Shopping Cart</h2>
+
+    <div class="cart-container">
+
+        <!-- LEFT SIDE -->
+        <div class="cart-left">
+
+            <div class="cart-header-row">
+                <span>Product Details</span>
+                <span>Quantity</span>
+                <span>Price</span>
+                <span>Total</span>
+            </div>
+
+            <!-- Dynamic cart items rendered by script.js renderCartPage() -->
+            <div id="cartItemsContainer"></div>
+
+        </div>
+
+        <!-- RIGHT SIDE -->
+        <div class="cart-right">
+
+            <div class="cart-summary">
+                <div class="summary-row">
+                    <span>Estimated Total</span>
+                    <span id="cartTotalDisplay">RM 0.00</span>
+                </div>
+
+                <p class="summary-note">
+                    *Shipping, taxes and discounts calculated at checkout*
+                </p>
+
+                <button class="checkout-btn" onclick="location.href='checkout.html'">
+                CHECK OUT
+                </button>
+            </div>
+
+        </div>
+
+    </div>
+
+</main>
+<!-- FOOTER ------------------------------------------------------------------------------------------------------------------>
+<footer class="footer">
+  <div class="footer-content">
+
+    <!-- CUSTOMER -->
+    <div class="footer-box">
+      <h3>Customer Service</h3>
+      <a href="#">Help Centre</a>
+      <a href="#">How to Buy</a>
+      <a href="#">Refund & Return</a>
+      <a href="#">Contact Us</a>
+    </div>
+
+    <!-- BRANDS -->
+    <div class="footer-box">
+      <h3>Brands</h3>
+      <a href="product-list.html?search=asus">Asus</a>
+      <a href="product-list.html?search=msi">Msi</a>
+      <a href="product-list.html?search=razer">Razer</a>
+      <a href="product-list.html?search=amd">Amd</a>
+      <a href="product-list.html?search=intel">Intel</a>
+      <a href="product-list.html?search=nvidia">Nvidia</a>
+      <a href="product-list.html?search=gigabite">Gigabite</a>
+      <a href="product-list.html?search=logitech">Logitech</a>
+    </div>
+
+    <!-- PAYMENT -->
+    <div class="footer-box">
+      <h3>Payment Method</h3>
+
+      <div class="logo-grid">
+        <div>logo</div><div>logo</div><div>logo</div><div>logo</div>
+        <div>logo</div><div>logo</div><div>logo</div><div>logo</div>
+      </div>
+
+      <h4>Logistics</h4>
+
+      <div class="logo-grid">
+        <div>logo</div><div>logo</div><div>logo</div>
+        <div>logo</div><div>logo</div>
+      </div>
+    </div>
+
+    <!-- FOLLOW -->
+    <div class="footer-box">
+      <h3>Follow us</h3>
+
+      <div class="logo-row">
+        <div>logo</div>
+        <div>logo</div>
+        <div>logo</div>
+        <div>logo</div>
+      </div>
+
+      <p>Leave a review to us:</p>
+
+      <div class="review-box">
+        <textarea placeholder="text box"></textarea>
+        <button class="submit-btn">Submit</button>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    Copyright 2026.
+  </div>
+</footer>
+<!-- search -->
+        <script>
+window.onload = function () {
+
+    const params = new URLSearchParams(window.location.search);
+    const keyword = params.get("search")?.toLowerCase().trim() || "";
+
+    const grid = document.querySelector(".products-grid");
+    const cards = document.querySelectorAll(".product-card");
+    const pagination = document.getElementById("pagination");
+
+    let found = false;
+
+    // ⭐ 空 keyword → 显示全部
+    if (keyword === "") {
+        cards.forEach(card => {
+            card.style.display = "block";
+        });
+
+        if (pagination) pagination.style.display = "flex";
+        return;
+    }
+
+    // ⭐ 有 keyword → 过滤
+    cards.forEach(card => {
+        const name = card.innerText.toLowerCase();
+
+        if (name.includes(keyword)) {
+            card.style.display = "block";
+            found = true;
+        } else {
+            card.style.display = "none";
+        }
+    });
+
+    // ❌ 没找到
+    if (!found) {
+
+        // ⭐ 清掉所有 product
+        grid.innerHTML = `
+            <div class="no-results">
+                 <div class="warning-icon-box">
+            <svg width="130" height="150" viewBox="0 0 24 24">
+                <path d="M12 2 L22 20 L2 20 Z"
+                      fill="none"
+                      stroke="#f59e0b"
+                      stroke-width="1"/>
+                <text x="12" y="16" text-anchor="middle"
+                      font-size="10"
+                      fill="#f59e0b"
+                      font-weight="bold">!</text>
+            </svg>
+                <h2>No Results Found For:</h2>
+                <p>"${keyword}"</p>
+            </div>
+        `;
+
+        // ⭐ 关键：隐藏分页
+        if (pagination) pagination.style.display = "none";
+
+        return;   // ⭐ 防止下面再改回去
+    }
+
+    // ✅ 有结果
+    if (pagination) pagination.style.display = "flex";
+
+};
+
+</script>
+    <!-- login-->
+<div class="login-overlay" id="loginOverlay" onclick="closeLogin()"></div>
+
+<div class="login-popup" id="loginPopup">
+
+    <button class="login-close" onclick="closeLogin()">✕</button>
+
+    <h2>Login</h2>
+
+    <label>Email:</label>
+    <div class="password-box"><input type="email" id="loginEmail" placeholder="E.g. user@gmail.com"></div>
+
+    <label>Password:</label>
+    <div class="password-box">
+        <input type="password" id="loginPasswordInput" placeholder="Enter your password">
+        <span onclick="togglePassword('loginPasswordInput')">👁</span>
+    </div>
+
+    <div class="forgot">Forget Password?</div>
+
+    <button class="login-btn" onclick="doLogin()">Login</button>
+
+    <div class="divider1">
+        <span>or continue with</span>
+    </div>
+
+    <button class="social-btn google" onclick="doGoogleLogin()">
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg">
+    google login
+    </button>
+
+    <button class="social-btn apple" onclick="doAppleLogin()">
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apple/apple-original.svg">
+    apple login
+    </button>
+
+
+    <div class="signup-text">
+        Don't have an account? <span onclick="goSignup()" style="cursor:pointer;text-decoration:underline;">Sign Up</span>
+    </div>
+
+</div>
+<!-- Signup -->
+<div class="signup-overlay" id="signupOverlay"></div>
+
+<div class="signup-popup" id="signupPopup">
+    <button class="signup-close" onclick="closeSignup()">✕</button>
+
+    <h2>Signup</h2>
+
+    <label>Email:</label>
+    <div class="password-row"><input type="email" id="signupEmailInput" placeholder="E.g. user@gmail.com"></div>
+
+    <label>Password:</label>
+    <div class="password-row">
+        <input type="password" id="signupPasswordInput" placeholder="Enter your password" oninput="checkPasswordRules(this.value)">
+        <span class="eye" onclick="togglePassword('signupPasswordInput')">👁</span>
+    </div>
+
+    <div class="password-rules">
+        <label><input type="checkbox" id="rule-length"> 8-16 characters</label>
+        <label><input type="checkbox" id="rule-special"> At least 1 special character</label>
+        <label><input type="checkbox" id="rule-upper"> At least 1 uppercase letter</label>
+        <label><input type="checkbox" id="rule-lower"> At least 1 lowercase letter</label>
+        <label><input type="checkbox" id="rule-number"> At least 1 number</label>
+    </div>
+
+    <label>Confirm password:</label>
+    <div class="password-row">
+        <input type="password" id="confirmPassword" placeholder="Confirm your password">
+        <span class="eye" onclick="togglePassword('confirmPassword')">👁</span>
+    </div>
+
+    <button class="signup-btn" onclick="doSignup()">Sign Up</button>
+
+    <div class="login-text">
+        Already have an account? <span onclick="goLogin()">Login</span>
+    </div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>

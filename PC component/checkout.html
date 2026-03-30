@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compare Product - Brian PC Component</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- HEADER -->
+   <header class="header">
+    <div class="header-left">
+        <span class="back-arrow" onclick="history.back()" style="cursor:pointer;">←</span>
+    </div>
+    
+    <div class="header-center">
+        <a href="index.html" class="system-name">Brian PC Component</a>
+    </div>
+    
+    <div class="header-right">
+    <div class="search-container">
+        <input id="searchInput" type="text" placeholder="Search" onkeydown="if(event.key==='Enter') searchProduct()">
+        <button onclick="searchProduct()">🔍</button>
+    
+</div>
+
+        <div class="icon"><a href="cart.html">🛒<span class="badge cart-badge">0</span></a></div>
+        <div class="icon" id="userIcon" style="cursor:pointer;">👤</div>
+    </div>
+</header>
+
+<main class="checkout-page">
+
+    <div class="checkout-container">
+
+        <!-- LEFT -->
+        <div class="checkout-left">
+
+            <!-- 1 DELIVERY -->
+            <h3>1. DELIVERY ADDRESS <span class="required-text">Require <span style="color:#e53935;">*</span></span></h3>
+
+            <div class="form-grid">
+    <div class="postcode-box">
+        <label>First Name <span style="color:#e53935;">*</span></label>
+        <input id="inputFirstName" placeholder="First Name">
+        <span class="field-error" id="errFirstName"></span>
+    </div>
+    <div class="postcode-box">
+        <label>Last Name <span style="color:#e53935;">*</span></label>
+        <input id="inputLastName" placeholder="Last Name">
+        <span class="field-error" id="errLastName"></span>
+    </div>
+    <div class="postcode-box">
+        <label>Email <span style="color:#e53935;">*</span></label>
+        <input id="inputEmail" placeholder="Email">
+        <span class="field-error" id="errEmail"></span>
+    </div>
+    <div class="postcode-box">
+        <label>Phone Number <span style="color:#e53935;">*</span></label>
+        <input id="inputPhone" placeholder="Phone Number">
+        <span class="field-error" id="errPhone"></span>
+    </div>
+    <div class="postcode-box">
+        <label>Address 1 <span style="color:#e53935;">*</span></label>
+        <input id="inputAddress1" placeholder="Address 1">
+        <span class="field-error" id="errAddress1"></span>
+    </div>
+    <div class="postcode-box">
+        <label>Address 2 (optional)</label>
+        <input placeholder="Address 2 (optional)">
+    </div>
+
+    <!-- 🔥 新的一行 -->
+    <div class="postcode-state">
+    <div class="postcode-box">
+        <label>Postcode <span style="color:#e53935;">*</span></label>
+        <input id="inputPostcode" placeholder="XXXXX">
+        <span class="field-error" id="errPostcode"></span>
+    </div>
+
+    <div class="state-container">
+        <label>State <span style="color:#e53935;">*</span></label>
+
+        <div class="state-selected" id="stateSelected" onclick="toggleStateBox()">
+            <span id="stateText">State</span>
+            <span class="state-arrow">▾</span>
+        </div>
+        <span class="field-error" id="errState"></span>
+
+        <div class="state-box" id="stateBox" style="display:none;">
+            <div class="state-option" onclick="selectState(this)"><span class="circle"></span>KUALA LUMPUR</div>
+            <div class="state-option" onclick="selectState(this)"><span class="circle"></span>JOHOR</div>
+            <div class="state-option" onclick="selectState(this)"><span class="circle"></span>SELANGOR</div>
+            <div class="state-option" onclick="selectState(this)"><span class="circle"></span>PERAK</div>
+            <div class="state-option" onclick="selectState(this)"><span class="circle"></span>PENANG</div>
+            <div class="state-option" onclick="selectState(this)"><span class="circle"></span>SABAH</div>
+            <div class="state-option" onclick="selectState(this)"><span class="circle"></span>SARAWAK</div>
+            <div class="state-option" onclick="selectState(this)"><span class="circle"></span>KEDAH</div>
+            <div class="state-option" onclick="selectState(this)"><span class="circle"></span>KELANTAN</div>
+            <div class="state-option" onclick="selectState(this)"><span class="circle"></span>MELAKA</div>
+            <div class="state-option" onclick="selectState(this)"><span class="circle"></span>NEGERI SEMBILAN</div>
+            <div class="state-option" onclick="selectState(this)"><span class="circle"></span>PAHANG</div>
+            <div class="state-option" onclick="selectState(this)"><span class="circle"></span>TERENGGANU</div>
+            <div class="state-option" onclick="selectState(this)"><span class="circle"></span>PERLIS</div>
+            <div class="state-option" onclick="selectState(this)"><span class="circle"></span>PUTRAJAYA</div>
+            <div class="state-option" onclick="selectState(this)"><span class="circle"></span>LABUAN</div>
+        </div>
+    </div>
+</div>
+
+    <div class="postcode-box">
+        <label>City <span style="color:#e53935;">*</span></label>
+        <input id="inputCity" placeholder="City" class="city-input">
+        <span class="field-error" id="errCity"></span>
+    </div>
+</div>
+
+            <!-- 2 SHIPPING -->
+            <h3>2. SHIPPING METHOD <span style="color:#e53935;">*</span></h3>
+
+            <div class="shipping-box">
+                <div class="payment-option" id="shippingToggle" onclick="toggleShipping()">
+                    <span id="shippingDot" style="display:none;color:#4caf50;margin-right:4px;">●</span><span id="shippingLabel">Select Shipping Method</span> <span class="pay-arrow" id="shippingArrow">▼</span>
+                </div>
+                <div id="shippingItems" style="display:none;">
+                    <div class="shipping-option" onclick="selectShipping(this)">Standard Delivery - RM 4.90</div>
+                    <div class="shipping-option" onclick="selectShipping(this)">Economy Delivery - RM 3.60</div>
+                    <div class="shipping-option" onclick="selectShipping(this)">Express Delivery - RM 12.00</div>
+                    <div class="shipping-option" onclick="selectShipping(this)">Next Day Delivery - RM 18.00</div>
+                </div>
+            </div>
+            <span class="field-error" id="errShipping"></span>
+
+            <!-- 3 PAYMENT -->
+            <h3>3. PAYMENT METHOD</h3>
+
+            <div class="payment-box">
+
+                <div class="payment-group">
+                    <div class="payment-option active" id="ewalletToggle" onclick="togglePayment('ewalletItems','ewalletToggle')">
+                        <span class="pay-dot active-dot">●</span> E-WALLET <span class="pay-arrow">▲</span>
+                    </div>
+                    <div class="payment-sub-items" id="ewalletItems">
+                        <div class="payment-sub-item"><span class="pay-logo-box">TNG</span><span>Touch 'n Go eWallet</span></div>
+                        <div class="payment-sub-item"><span class="pay-logo-box">GP</span><span>GrabPay</span></div>
+                        <div class="payment-sub-item"><span class="pay-logo-box">SP</span><span>ShopeePay</span></div>
+                        <div class="payment-sub-item"><span class="pay-logo-box">BST</span><span>Boost</span></div>
+                    </div>
+                </div>
+
+                <div class="payment-option" id="bnplToggle" onclick="togglePayment('bnplItems','bnplToggle')">○ BUY NOW PAY LATER <span class="pay-arrow">▼</span></div>
+                <div class="payment-sub-items" id="bnplItems" style="display:none;">
+                    <div class="payment-sub-item"><span class="pay-logo-box">AT</span><span>Atome</span></div>
+                    <div class="payment-sub-item"><span class="pay-logo-box">SG</span><span>Split</span></div>
+                    <div class="payment-sub-item"><span class="pay-logo-box">FPL</span><span>FavePay Later</span></div>
+                </div>
+
+                <div class="payment-option" id="obToggle" onclick="togglePayment('obItems','obToggle')">○ ONLINE BANKING <span class="pay-arrow">▼</span></div>
+                <div class="payment-sub-items" id="obItems" style="display:none;">
+                    <div class="payment-sub-item"><span class="pay-logo-box">M2U</span><span>Maybank2u</span></div>
+                    <div class="payment-sub-item"><span class="pay-logo-box">CIMB</span><span>CIMB Clicks</span></div>
+                    <div class="payment-sub-item"><span class="pay-logo-box">PBB</span><span>Public Bank</span></div>
+                    <div class="payment-sub-item"><span class="pay-logo-box">RHB</span><span>RHB Now</span></div>
+                </div>
+
+                <div class="payment-option" id="cdToggle" onclick="togglePayment('cdItems','cdToggle')">○ CREDIT / DEBIT CARD <span class="pay-arrow">▼</span></div>
+                <div class="payment-sub-items" id="cdItems" style="display:none;">
+                    <div class="payment-sub-item"><span class="pay-logo-box">VISA</span><span>Visa</span></div>
+                    <div class="payment-sub-item"><span class="pay-logo-box">MC</span><span>Mastercard</span></div>
+                    <div class="payment-sub-item"><span class="pay-logo-box">AMEX</span><span>American Express</span></div>
+                </div>
+
+                <div class="payment-option" id="otherToggle" onclick="togglePayment('otherItems','otherToggle')">○ OTHER <span class="pay-arrow">▼</span></div>
+                <div class="payment-sub-items" id="otherItems" style="display:none;">
+                    <div class="payment-sub-item"><span class="pay-logo-box">COD</span><span>Cash on Delivery</span></div>
+                </div>
+
+            </div>
+
+            <!-- PROMO -->
+            <p class="section-label">PROMO CODE</p>
+            <div class="promo-row">
+                <input id="promoInput" placeholder="XXXX - XXX - XXXX">
+                <button class="apply-btn" onclick="applyPromoCode()">APPLY</button>
+            </div>
+
+            <!-- NOTES -->
+            <p class="section-label">ORDER NOTES (OPTIONAL)</p>
+            <textarea class="order-notes" placeholder="Noted about your order, e.g. Leave at the guardhouse (72 characters limit)"></textarea>
+
+        </div>
+
+        <!-- RIGHT -->
+        <div class="checkout-right">
+
+            <h3>Items Summary</h3>
+
+            <div class="summary-box">
+
+                <div class="summary-header-row">
+                    <span>Product Details</span>
+                    <span>Quantity</span>
+                    <span>Price</span>
+                </div>
+
+                <!-- Dynamic cart items injected by renderCheckoutSummary() -->
+                <div id="checkoutItemsContainer"></div>
+
+                <div class="summary-divider"></div>
+
+                <div class="summary-item">
+                    <span>Subtotal</span>
+                    <span id="checkoutSubtotal">RM 0.00</span>
+                </div>
+                <div class="summary-item">
+                    <span>Shipping</span>
+                    <span id="checkoutShipping">+ RM 4.90</span>
+                </div>
+                <div class="summary-item">
+                    <span>Discount</span>
+                    <span id="checkoutDiscount">- RM 0.00</span>
+                </div>
+
+                <div class="summary-total">
+                    <strong>Grand Total</strong>
+                    <strong id="checkoutGrandTotal">RM 4.90</strong>
+                </div>
+
+                <button class="place-order-btn" onclick="placeOrder()">PLACE ORDER</button>
+                <button class="cancel-btn" onclick="showCancelWarning()">CANCEL</button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</main>
+
+
+  <!-- FOOTER ------------------------------------------------------------------------------------------------------------------>
+<footer class="footer">
+  <div class="footer-content">
+
+    <!-- CUSTOMER -->
+    <div class="footer-box">
+      <h3>Customer Service</h3>
+      <a href="#">Help Centre</a>
+      <a href="#">How to Buy</a>
+      <a href="#">Refund & Return</a>
+      <a href="#">Contact Us</a>
+    </div>
+
+    <!-- BRANDS -->
+    <div class="footer-box">
+      <h3>Brands</h3>
+      <a href="product-list.html?search=asus">Asus</a>
+      <a href="product-list.html?search=msi">Msi</a>
+      <a href="product-list.html?search=razer">Razer</a>
+      <a href="product-list.html?search=amd">Amd</a>
+      <a href="product-list.html?search=intel">Intel</a>
+      <a href="product-list.html?search=nvidia">Nvidia</a>
+      <a href="product-list.html?search=gigabite">Gigabite</a>
+      <a href="product-list.html?search=logitech">Logitech</a>
+    </div>
+
+    <!-- PAYMENT -->
+    <div class="footer-box">
+      <h3>Payment Method</h3>
+
+      <div class="logo-grid">
+        <div>logo</div><div>logo</div><div>logo</div><div>logo</div>
+        <div>logo</div><div>logo</div><div>logo</div><div>logo</div>
+      </div>
+
+      <h4>Logistics</h4>
+
+      <div class="logo-grid">
+        <div>logo</div><div>logo</div><div>logo</div>
+        <div>logo</div><div>logo</div>
+      </div>
+    </div>
+
+    <!-- FOLLOW -->
+    <div class="footer-box">
+      <h3>Follow us</h3>
+
+      <div class="logo-row">
+        <div>logo</div>
+        <div>logo</div>
+        <div>logo</div>
+        <div>logo</div>
+      </div>
+
+      <p>Leave a review to us:</p>
+
+      <div class="review-box">
+        <textarea placeholder="text box"></textarea>
+        <button class="submit-btn">Submit</button>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    Copyright 2026.
+  </div>
+</footer>
+
+<!-- CANCEL WARNING MODAL -->
+<div class="cancel-overlay" id="cancelOverlay" onclick="hideCancelWarning()"></div>
+<div class="cancel-modal" id="cancelModal">
+    <div class="cancel-warning-icon">
+        <svg width="80" height="80" viewBox="0 0 100 100">
+            <polygon points="50,5 95,90 5,90" fill="#FF4444" stroke="#FF0000" stroke-width="2"/>
+            <polygon points="50,12 88,85 12,85" fill="#FFAA00" stroke="none"/>
+            <text x="50" y="75" text-anchor="middle" font-size="44" fill="#FF4444" font-weight="bold">!</text>
+        </svg>
+    </div>
+    <h2 class="cancel-warning-title">Warning!!!</h2>
+    <p class="cancel-warning-msg">Are you sure want to <strong style="color:red;">CANCEL</strong> making payment and back to main page?</p>
+    <p class="cancel-warning-red">AFTER CANCEL you will lost all the change.</p>
+    <p class="cancel-warning-red">This action is <strong>IRREVERSIBLE</strong></p>
+    <div class="cancel-warning-buttons">
+        <button class="cancel-no-btn" onclick="hideCancelWarning()">NO, I want to continue<br>make payment</button>
+        <button class="cancel-yes-btn" onclick="location.href='index.html'">YES, I want to cancel<br>make payment</button>
+    </div>
+</div>
+
+<!-- LOGIN POPUP -->
+<div class="login-overlay" id="loginOverlay" onclick="closeLogin()"></div>
+<div class="login-popup" id="loginPopup">
+    <button class="login-close" onclick="closeLogin()">✕</button>
+    <h2>Login</h2>
+    <label>Email:</label>
+    <div class="password-box"><input type="email" id="loginEmail" placeholder="E.g. user@gmail.com"></div>
+    <label>Password:</label>
+    <div class="password-box">
+        <input type="password" id="loginPasswordInput" placeholder="Enter your password">
+        <span onclick="togglePassword('loginPasswordInput')">👁</span>
+    </div>
+    <div class="forgot">Forget Password?</div>
+    <button class="login-btn" onclick="doLogin()">Login</button>
+    <div class="divider1"><span>or continue with</span></div>
+    <button class="social-btn google" onclick="doGoogleLogin()">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg">
+        google login
+    </button>
+    <button class="social-btn apple" onclick="doAppleLogin()">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apple/apple-original.svg">
+        apple login
+    </button>
+    <div class="signup-text">
+        Don't have an account? <span onclick="goSignup()" style="cursor:pointer;text-decoration:underline;">Sign Up</span>
+    </div>
+</div>
+
+<!-- SIGNUP POPUP -->
+<div class="signup-overlay" id="signupOverlay"></div>
+<div class="signup-popup" id="signupPopup">
+    <button class="signup-close" onclick="closeSignup()">✕</button>
+    <h2>Signup</h2>
+    <label>Email:</label>
+    <div class="password-row"><input type="email" id="signupEmailInput" placeholder="E.g. user@gmail.com"></div>
+    <label>Password:</label>
+    <div class="password-row">
+        <input type="password" id="signupPasswordInput" placeholder="Enter your password" oninput="checkPasswordRules(this.value)">
+        <span class="eye" onclick="togglePassword('signupPasswordInput')">👁</span>
+    </div>
+    <label>Confirm password:</label>
+    <div class="password-row">
+        <input type="password" id="confirmPassword" placeholder="Confirm your password">
+        <span class="eye" onclick="togglePassword('confirmPassword')">👁</span>
+    </div>
+    <button class="signup-btn" onclick="doSignup()">Sign Up</button>
+    <div class="login-text">
+        Already have an account? <span onclick="goLogin()" style="cursor:pointer;">Login</span>
+    </div>
+</div>
+
+<script>
+function toggleStateBox() {
+    var box = document.getElementById('stateBox');
+    box.style.display = box.style.display === 'none' ? 'block' : 'none';
+}
+function selectState(el) {
+    document.querySelectorAll('.state-option').forEach(function(o) { o.classList.remove('active'); });
+    el.classList.add('active');
+    var text = el.textContent.trim();
+    document.getElementById('stateText').textContent = text;
+    document.getElementById('stateBox').style.display = 'none';
+    var errState = document.getElementById('errState');
+    if (errState) errState.textContent = '';
+    document.getElementById('stateSelected').style.borderColor = '';
+}
+document.addEventListener('click', function(e) {
+    var container = document.querySelector('.state-container');
+    if (container && !container.contains(e.target)) {
+        var box = document.getElementById('stateBox');
+        if (box) box.style.display = 'none';
+    }
+});
+
+function showCancelWarning() {
+    document.getElementById("cancelOverlay").style.display = "block";
+    document.getElementById("cancelModal").style.display = "block";
+}
+function hideCancelWarning() {
+    document.getElementById("cancelOverlay").style.display = "none";
+    document.getElementById("cancelModal").style.display = "none";
+}
+function togglePayment(id, toggleId) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    const isOpen = el.style.display !== "none";
+    el.style.display = isOpen ? "none" : "block";
+    if (toggleId) {
+        const arrow = document.querySelector('#' + toggleId + ' .pay-arrow');
+        if (arrow) arrow.textContent = isOpen ? "▼" : "▲";
+    }
+}
+function searchProduct() {
+    const input = document.getElementById("searchInput").value;
+    window.location.href = `product-list.html?search=${encodeURIComponent(input)}`;
+}
+</script>
+    <script src="script.js"></script>
+</body>
+</html>
