@@ -403,6 +403,18 @@ function updateCartBadge() {
 }
 
 // ============================================================
+// CART PAGE – checkout guard
+// ============================================================
+function goCheckout() {
+    const cart = JSON.parse(localStorage.getItem('cart') || '[]');
+    if (cart.length === 0) {
+        showToast('Your cart is empty!', 'error');
+        return;
+    }
+    location.href = 'checkout.html';
+}
+
+// ============================================================
 // CART PAGE – dynamic render
 // ============================================================
 function renderCartPage() {
