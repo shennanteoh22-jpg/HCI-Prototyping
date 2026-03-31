@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Receipt - Brian PC Component</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- HEADER -->
+    <header class="header">
+    <div class="header-left">
+        <button class="hamburger-menu" onclick="openMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </div>
+    
+    <div class="header-center">
+        <a href="index.html" class="system-name">Brian PC Component</a>
+    </div>
+    
+    <div class="header-right">
+        <div class="search-container">
+            <input type="text" id="searchInput" class="search-input" placeholder="">
+<button class="search-btn" onclick="goSearch()">🔍</button>
+        </div>
+
+        <div class="icon-container">
+
+            <!-- ✅ CART -->
+            <a href="cart.html" class="cart-btn">
+                🛒
+                <span class="badge">2</span>
+            </a>
+
+            <!-- USER -->
+           <button class="user-btn" onclick="openLogin()">
+                👤
+                <span class="badge">1</span>
+            </button>
+
+        </div>
+    </div>
+</header>
+
+<main class="receipt-page">
+    <div class="receipt-container">
+        <!-- RECEIPT HEADER -->
+        <div class="receipt-header">
+            <h1>ORDER RECEIPT</h1>
+        </div>
+
+        <!-- CUSTOMER & ORDER INFO -->
+        <div class="receipt-info">
+            <div class="info-section">
+                <h3>Customer Information</h3>
+                <div class="info-row">
+                    <span class="label">Customer Name:</span>
+                    <span class="value">xxxx</span>
+                    <span class="label">Receipt Number:</span>
+                    <span class="value">ORxxxxxxxx</span>
+                </div>
+                <div class="info-row">
+                    <span class="label">Customer Address:</span>
+                    <span class="value">xxxx</span>
+                    <span class="label">Receipt Date:</span>
+                    <span class="value">dd/mm/yyyy</span>
+                </div>
+            </div>
+
+            <div class="info-section">
+                <h3>Order Information</h3>
+                <div class="info-row">
+                    <span class="label">Order ID:</span>
+                    <span class="value">ORxxxxxxxx</span>
+                    <span class="label">Order Date:</span>
+                    <span class="value">dd/mm/yyyy</span>
+                </div>
+                <div class="info-row">
+                    <span class="label">Payment Method:</span>
+                    <span class="value">E-Wallet</span>
+                    <span class="label">Order Status:</span>
+                    <span class="value status confirmed">Confirmed</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- ORDER DETAILS TABLE -->
+        <div class="order-details">
+            <h3>ORDER DETAILS</h3>
+            <table class="receipt-table">
+                <thead>
+                    <tr>
+                        <th>No.</th>
+                        <th>Product</th>
+                        <th>Variation</th>
+                        <th>Qty</th>
+                        <th>Unit Price</th>
+                        <th>Subtotal</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>(1)</td>
+                        <td>Product Name</td>
+                        <td>Product Variation</td>
+                        <td>1</td>
+                        <td>RM (x.xx)</td>
+                        <td>RM (x.xx)</td>
+                    </tr>
+                    <tr>
+                        <td>(2)</td>
+                        <td>Product Name</td>
+                        <td>Product Variation</td>
+                        <td>1</td>
+                        <td>RM (x.xx)</td>
+                        <td>RM (x.xx)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- PRICING SUMMARY -->
+        <div class="pricing-summary">
+            <div class="pricing-row">
+                <span class="label">Subtotal:</span>
+                <span class="value">RM (x.xx)</span>
+            </div>
+            <div class="pricing-row">
+                <span class="label">Tax:</span>
+                <span class="value">RM (x.xx)</span>
+            </div>
+            <div class="pricing-row">
+                <span class="label">Shipping:</span>
+                <span class="value">RM (x.xx)</span>
+            </div>
+            <div class="pricing-row">
+                <span class="label">Discount:</span>
+                <span class="value">- RM (x.xx)</span>
+            </div>
+            <div class="pricing-row total">
+                <span class="label">Grand Total:</span>
+                <span class="value">RM (x.xx)</span>
+            </div>
+        </div>
+
+        <!-- ACTIONS -->
+        <div class="receipt-actions">
+            <button class="btn-print" onclick="window.print()">
+                🖨️ Print Receipt
+            </button>
+            <button class="btn-download" onclick="downloadReceipt()">
+                📥 Download PDF
+            </button>
+            <button class="btn-back-home" onclick="window.location.href='index.html'">
+                Back to Main Page
+            </button>
+        </div>
+    </div>
+</main>
+
+<!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section footer-customer-service">
+                <h3>Customer Service</h3>
+                <ul>
+                    <li><a href="#">Help Centre</a></li>
+                    <li><a href="#">How to Buy</a></li>
+                    <li><a href="#">Refund & Return</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section footer-brands">
+                <h3>Brands</h3>
+                <ul>
+                    <li><a href="product-list.html?search=asus"</a></li>
+                    <li><a href="product-list.html?search=msi"</a></li>
+                    <li><a href="product-list.html?search=razer"</a></li>
+                    <li><a href="product-list.html?search=amd"</a></li>
+                    <li><a href="product-list.html?search=intel"</a></li>
+                    <li><a href="product-list.html?search=nvidia"</a></li>
+                    <li><a href="product-list.html?search=gigabite"</a></li>
+                    <li><a href="product-list.html?search=logitech"</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section footer-payment">
+                <h3>Payment Method</h3>
+                <div class="logo-grid">
+                    <div class="logo-placeholder">logo</div>
+                    <div class="logo-placeholder">logo</div>
+                    <div class="logo-placeholder">logo</div>
+                    <div class="logo-placeholder">logo</div>
+                    <div class="logo-placeholder">logo</div>
+                    <div class="logo-placeholder">logo</div>
+                    <div class="logo-placeholder">logo</div>
+                    <div class="logo-placeholder">logo</div>
+                </div>
+                <h3 style="margin-top: 20px;">LOGISTICS</h3>
+                <div class="logo-grid">
+                    <div class="logo-placeholder">logo</div>
+                    <div class="logo-placeholder">logo</div>
+                    <div class="logo-placeholder">logo</div>
+                    <div class="logo-placeholder">logo</div>
+                    <div class="logo-placeholder">logo</div>
+                    <div class="logo-placeholder">logo</div>
+                    <div class="logo-placeholder">logo</div>
+                    <div class="logo-placeholder">logo</div>
+                </div>
+            </div>
+
+            <div class="footer-section footer-review">
+                <h3>Follow us</h3>
+                <div class="social-logos">
+                    <div class="logo-placeholder">logo</div>
+                    <div class="logo-placeholder">logo</div>
+                    <div class="logo-placeholder">logo</div>
+                    <div class="logo-placeholder">logo</div>
+                </div>
+                <p class="review-text">Leave a review to us:</p>
+                <textarea class="review-box" placeholder=""></textarea>
+                <button class="submit-btn">Submit</button>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>Copyright 2026.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        function downloadReceipt() {
+            alert('PDF download functionality to be implemented');
+            // Will implement actual PDF download functionality
+        }
+    </script>
+</body>
+</html>

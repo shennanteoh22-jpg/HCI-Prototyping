@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compare Product - Brian PC Component</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<!-- HEADER -->
+<header class="header">
+    <div class="header-left"><span class="back-arrow" onclick="history.back()" style="cursor:pointer;">←</span></div>
+
+    <div class="header-center"><a href="index.html" class="system-name">Brian PC Component</a></div>
+
+    <div class="header-right">
+        <div class="search-container">
+            <input id="searchInput" type="text" onkeydown="if(event.key==='Enter') searchProduct()">
+            <button onclick="searchProduct()">🔍</button>
+        </div>
+        <div class="icon-group">
+            <div class="icon">
+                <a href="cart.html">🛒<span class="badge cart-badge">0</span></a>
+            </div>
+            <div class="icon" id="userIcon" style="cursor:pointer;">👤</div>
+        </div>
+    </div>
+</header>
+
+    <!-- RETURN LINK & COMPARE MODAL -->
+    <div class="compare-page-wrapper">
+        <div class="return-link-container"></div>
+
+        <!-- COMPARE MODAL -->
+        <div class="compare-modal">
+            <div class="compare-modal-header">
+                <h2 class="compare-modal-title">Compare Others Product</h2>
+                <button class="compare-modal-close" id="compareClose" onclick="history.back()">×</button>
+            </div>
+
+            <div class="compare-modal-content">
+                <!-- LEFT PRODUCT -->
+                <div class="compare-product-column">
+                    <div class="compare-product-image-box" id="p1Image">PRODUCT<br>IMAGE</div>
+
+                    <div class="compare-specs-wrapper">
+                        <table class="compare-specs-table compare-specs-green">
+                            <thead>
+                                <tr>
+                                    <th class="compare-spec-header" style="background-color: #A5D6A7;">Specification</th>
+                                    <th class="compare-spec-header" style="background-color: #A5D6A7;" id="p1Title">—</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="compare-spec-name">Rating (0.1 - 5.0)</td>
+                                    <td class="compare-spec-value" id="p1Rating">—</td>
+                                </tr>
+                                <tr class="compare-spec-alt-green">
+                                    <td class="compare-spec-name">Launch price (RM)</td>
+                                    <td class="compare-spec-value" id="p1Price">—</td>
+                                </tr>
+                                <tr>
+                                    <td class="compare-spec-name">Cost-effectiveness evaluation (1 - 100)</td>
+                                    <td class="compare-spec-value" id="p1CostEff">—</td>
+                                </tr>
+                                <tr class="compare-spec-alt-green">
+                                    <td class="compare-spec-name">Power efficiency (1 - 100)</td>
+                                    <td class="compare-spec-value" id="p1PowerEff">—</td>
+                                </tr>
+                                <tr>
+                                    <td class="compare-spec-name">Product code name</td>
+                                    <td class="compare-spec-value" id="p1CodeName">—</td>
+                                </tr>
+                                <tr class="compare-spec-alt-green">
+                                    <td class="compare-spec-name">Market segment</td>
+                                    <td class="compare-spec-value" id="p1Market">—</td>
+                                </tr>
+                                <tr>
+                                    <td class="compare-spec-name">Release date</td>
+                                    <td class="compare-spec-value" id="p1Release">—</td>
+                                </tr>
+                                <tr class="compare-spec-alt-green">
+                                    <td class="compare-spec-name">Pipelines/CUDA cores</td>
+                                    <td class="compare-spec-value" id="p1Cores">—</td>
+                                </tr>
+                                <tr>
+                                    <td class="compare-spec-name">Core clock speed (MHz)</td>
+                                    <td class="compare-spec-value" id="p1CoreClock">—</td>
+                                </tr>
+                                <tr class="compare-spec-alt-green">
+                                    <td class="compare-spec-name">Boost clock speed (MHz)</td>
+                                    <td class="compare-spec-value" id="p1BoostClock">—</td>
+                                </tr>
+                                <tr>
+                                    <td class="compare-spec-name">Number of transistors</td>
+                                    <td class="compare-spec-value" id="p1Transistors">—</td>
+                                </tr>
+                                <tr class="compare-spec-alt-green">
+                                    <td class="compare-spec-name">Manufacturing process technology</td>
+                                    <td class="compare-spec-value" id="p1Process">—</td>
+                                </tr>
+                                <tr>
+                                    <td class="compare-spec-name">Power consumption (TDP)</td>
+                                    <td class="compare-spec-value" id="p1TDP">—</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="compare-actions">
+                        <button class="btn-add" id="p1AddCart">Add to cart</button>
+                        <a href="#" class="compare-detail-link" id="p1ViewDetail">View Product Detail</a>
+                        <button class="compare-other-link" id="p1Switch">Switch Other Product</button>
+                    </div>
+                </div>
+
+                <!-- RIGHT PRODUCT -->
+                <div class="compare-product-column">
+                    <div class="compare-product-image-box" id="p2Image">PRODUCT<br>IMAGE</div>
+
+                    <div class="compare-specs-wrapper">
+                        <table class="compare-specs-table compare-specs-orange">
+                            <thead>
+                                <tr>
+                                    <th class="compare-spec-header" style="background-color: #FFA500; color: white;">Specification</th>
+                                    <th class="compare-spec-header" style="background-color: #FFA500; color: white;" id="p2Title">—</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="compare-spec-name">Rating (0.1 - 5.0)</td>
+                                    <td class="compare-spec-value" id="p2Rating">—</td>
+                                </tr>
+                                <tr class="compare-spec-alt-orange">
+                                    <td class="compare-spec-name">Launch price (RM)</td>
+                                    <td class="compare-spec-value" id="p2Price">—</td>
+                                </tr>
+                                <tr>
+                                    <td class="compare-spec-name">Cost-effectiveness evaluation (1 - 100)</td>
+                                    <td class="compare-spec-value" id="p2CostEff">—</td>
+                                </tr>
+                                <tr class="compare-spec-alt-orange">
+                                    <td class="compare-spec-name">Power efficiency (1 - 100)</td>
+                                    <td class="compare-spec-value" id="p2PowerEff">—</td>
+                                </tr>
+                                <tr>
+                                    <td class="compare-spec-name">Product code name</td>
+                                    <td class="compare-spec-value" id="p2CodeName">—</td>
+                                </tr>
+                                <tr class="compare-spec-alt-orange">
+                                    <td class="compare-spec-name">Market segment</td>
+                                    <td class="compare-spec-value" id="p2Market">—</td>
+                                </tr>
+                                <tr>
+                                    <td class="compare-spec-name">Release date</td>
+                                    <td class="compare-spec-value" id="p2Release">—</td>
+                                </tr>
+                                <tr class="compare-spec-alt-orange">
+                                    <td class="compare-spec-name">Pipelines/CUDA cores</td>
+                                    <td class="compare-spec-value" id="p2Cores">—</td>
+                                </tr>
+                                <tr>
+                                    <td class="compare-spec-name">Core clock speed (MHz)</td>
+                                    <td class="compare-spec-value" id="p2CoreClock">—</td>
+                                </tr>
+                                <tr class="compare-spec-alt-orange">
+                                    <td class="compare-spec-name">Boost clock speed (MHz)</td>
+                                    <td class="compare-spec-value" id="p2BoostClock">—</td>
+                                </tr>
+                                <tr>
+                                    <td class="compare-spec-name">Number of transistors</td>
+                                    <td class="compare-spec-value" id="p2Transistors">—</td>
+                                </tr>
+                                <tr class="compare-spec-alt-orange">
+                                    <td class="compare-spec-name">Manufacturing process technology</td>
+                                    <td class="compare-spec-value" id="p2Process">—</td>
+                                </tr>
+                                <tr>
+                                    <td class="compare-spec-name">Power consumption (TDP)</td>
+                                    <td class="compare-spec-value" id="p2TDP">—</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="compare-actions">
+                        <button class="btn-add" id="p2AddCart">Add to cart</button>
+                        <a href="#" class="compare-detail-link" id="p2ViewDetail">View Product Detail</a>
+                        <button class="compare-other-link" id="p2Switch">Switch Other Product</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER ------------------------------------------------------------------------------------------------------------------>
+<footer class="footer">
+  <div class="footer-content">
+
+    <!-- CUSTOMER -->
+    <div class="footer-box">
+      <h3>Customer Service</h3>
+      <a href="#">Help Centre</a>
+      <a href="#">How to Buy</a>
+      <a href="#">Refund & Return</a>
+      <a href="#">Contact Us</a>
+    </div>
+
+    <!-- BRANDS -->
+    <div class="footer-box">
+      <h3>Brands</h3>
+      <a href="product-list.html?search=asus">Asus</a>
+      <a href="product-list.html?search=msi">Msi</a>
+      <a href="product-list.html?search=razer">Razer</a>
+      <a href="product-list.html?search=amd">Amd</a>
+      <a href="product-list.html?search=intel">Intel</a>
+      <a href="product-list.html?search=nvidia">Nvidia</a>
+      <a href="product-list.html?search=gigabite">Gigabite</a>
+      <a href="product-list.html?search=logitech">Logitech</a>
+    </div>
+
+    <!-- PAYMENT -->
+    <div class="footer-box">
+      <h3>Payment Method</h3>
+
+      <div class="logo-grid">
+        <div>logo</div><div>logo</div><div>logo</div><div>logo</div>
+        <div>logo</div><div>logo</div><div>logo</div><div>logo</div>
+      </div>
+
+      <h4>Logistics</h4>
+
+      <div class="logo-grid">
+        <div>logo</div><div>logo</div><div>logo</div>
+        <div>logo</div><div>logo</div>
+      </div>
+    </div>
+
+    <!-- FOLLOW -->
+    <div class="footer-box">
+      <h3>Follow us</h3>
+
+      <div class="logo-row">
+        <div>logo</div>
+        <div>logo</div>
+        <div>logo</div>
+        <div>logo</div>
+      </div>
+
+      <p>Leave a review to us:</p>
+
+      <div class="review-box">
+        <textarea placeholder="text box"></textarea>
+        <button class="submit-btn">Submit</button>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    Copyright 2026.
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compare Product - Brian PC Component</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- HEADER -->
+   <header class="header">
+    <div class="header-left">
+        <span class="back-arrow" onclick="history.back()" style="cursor:pointer;">←</span>
+            <span></span>
+            <span></span>
+        
+    </div>
+    
+    <div class="header-center">
+        <a href="index.html" class="system-name">Brian PC Component</a>
+    </div>
+    
+    <div class="header-right">
+    <div class="search-container">
+        <input id="searchInput" type="text" placeholder="Search" onkeydown="if(event.key==='Enter') searchProduct()">
+        <button onclick="searchProduct()">🔍</button>
+    
+</div>
+
+        <div class="icon">🛒<span class="badge">2</span></div>
+        <div class="icon"onclick="openLogin()">👤<span class="badge">1</span></div>
+    </div>
+</header>
+
+    <!-- RETURN LINK & COMPARE MODAL -->
+    <div class="compare-page-wrapper">
+        <div class="return-link-container"></div>
+
+        <!-- COMPARE MODAL -->
+        <div class="compare-modal">
+            <div class="compare-modal-header">
+                <h2 class="compare-modal-title">Compare Others Product</h2>
+                <button class="compare-modal-close" id="compareClose" onclick="history.back()">×</button>
+            </div>
+
+            <div class="compare-modal-content">
+                <!-- LEFT SIDE: CURRENT PRODUCT SPECS -->
+                <div class="compare-current-product">
+                    <div class="product-image-box" id="cProductImage">PRODUCT<br>IMAGE</div>
+
+                    <table class="specs-table">
+                        <thead>
+                            <tr>
+                                <th style="background-color:#A5D6A7;padding:6px;">Specification</th>
+                                <th style="background-color:#A5D6A7;padding:6px;" id="cProductTitle">—</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td class="spec-name">Rating (0.1 - 5.0)</td>
+                            <td class="spec-value" id="cRating">—</td>
+                        </tr>
+                        <tr class="spec-alt">
+                            <td class="spec-name">Price (RM)</td>
+                            <td class="spec-value" id="cPrice">—</td>
+                        </tr>
+                        <tr>
+                            <td class="spec-name">Cost-effectiveness evaluation (1 - 100)</td>
+                            <td class="spec-value" id="cCostEff">—</td>
+                        </tr>
+                        <tr class="spec-alt">
+                            <td class="spec-name">Power efficiency (1 - 100)</td>
+                            <td class="spec-value" id="cPowerEff">—</td>
+                        </tr>
+                        <tr>
+                            <td class="spec-name">Product code name</td>
+                            <td class="spec-value" id="cCodeName">—</td>
+                        </tr>
+                        <tr class="spec-alt">
+                            <td class="spec-name">Market segment</td>
+                            <td class="spec-value" id="cMarket">—</td>
+                        </tr>
+                        <tr>
+                            <td class="spec-name">Release date</td>
+                            <td class="spec-value" id="cRelease">—</td>
+                        </tr>
+                        <tr class="spec-alt">
+                            <td class="spec-name">Pipelines/CUDA cores</td>
+                            <td class="spec-value" id="cCores">—</td>
+                        </tr>
+                        <tr>
+                            <td class="spec-name">Core clock speed (MHz)</td>
+                            <td class="spec-value" id="cCoreClock">—</td>
+                        </tr>
+                        <tr class="spec-alt">
+                            <td class="spec-name">Boost clock speed (MHz)</td>
+                            <td class="spec-value" id="cBoostClock">—</td>
+                        </tr>
+                        <tr>
+                            <td class="spec-name">Number of transistors</td>
+                            <td class="spec-value" id="cTransistors">—</td>
+                        </tr>
+                        <tr class="spec-alt">
+                            <td class="spec-name">Manufacturing process technology</td>
+                            <td class="spec-value" id="cProcess">—</td>
+                        </tr>
+                        <tr>
+                            <td class="spec-name">Power consumption (TDP)</td>
+                            <td class="spec-value" id="cTDP">—</td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                    <a href="product-detail.html" class="view-detail-link" id="cViewDetail">View Product Detail</a>
+                </div>
+
+                <!-- DIVIDER -->
+                <div class="compare-divider"></div>
+
+                <!-- RIGHT SIDE: SELECT PRODUCT TO COMPARE -->
+                <div class="compare-products-selector">
+                    <h3 class="compare-select-title">Select ONE product to compare</h3>
+                    <div class="compare-products-grid" id="compareGrid"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER ------------------------------------------------------------------------------------------------------------------>
+<footer class="footer">
+  <div class="footer-content">
+
+    <!-- CUSTOMER -->
+    <div class="footer-box">
+      <h3>Customer Service</h3>
+      <a href="#">Help Centre</a>
+      <a href="#">How to Buy</a>
+      <a href="#">Refund & Return</a>
+      <a href="#">Contact Us</a>
+    </div>
+
+    <!-- BRANDS -->
+    <div class="footer-box">
+      <h3>Brands</h3>
+      <a href="product-list.html?search=asus">Asus</a>
+      <a href="product-list.html?search=msi">Msi</a>
+      <a href="product-list.html?search=razer">Razer</a>
+      <a href="product-list.html?search=amd">Amd</a>
+      <a href="product-list.html?search=intel">Intel</a>
+      <a href="product-list.html?search=nvidia">Nvidia</a>
+      <a href="product-list.html?search=gigabite">Gigabite</a>
+      <a href="product-list.html?search=logitech">Logitech</a>
+    </div>
+
+    <!-- PAYMENT -->
+    <div class="footer-box">
+      <h3>Payment Method</h3>
+
+      <div class="logo-grid">
+        <div>logo</div><div>logo</div><div>logo</div><div>logo</div>
+        <div>logo</div><div>logo</div><div>logo</div><div>logo</div>
+      </div>
+
+      <h4>Logistics</h4>
+
+      <div class="logo-grid">
+        <div>logo</div><div>logo</div><div>logo</div>
+        <div>logo</div><div>logo</div>
+      </div>
+    </div>
+
+    <!-- FOLLOW -->
+    <div class="footer-box">
+      <h3>Follow us</h3>
+
+      <div class="logo-row">
+        <div>logo</div>
+        <div>logo</div>
+        <div>logo</div>
+        <div>logo</div>
+      </div>
+
+      <p>Leave a review to us:</p>
+
+      <div class="review-box">
+        <textarea placeholder="text box"></textarea>
+        <button class="submit-btn">Submit</button>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    Copyright 2026.
+  </div>
+</footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brian PC Component</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header class="header">
+
+    <div class="header-left">
+        <span onclick="openMenu()" style="cursor: pointer;">☰</span>
+    </div>
+
+   <div class="header-center">
+        <a href="index.html" class="system-name">Brian PC Component</a>
+    </div>
+
+    <div class="header-right">
+    <div class="search-container">
+        <input id="searchInput" type="text" placeholder="Search" onkeydown="if(event.key==='Enter') searchProduct()">
+        <button onclick="searchProduct()">🔍</button>
+    
+</div>
+
+       <div class="icon">
+    <a href="cart.html">
+        🛒
+        <span class="badge cart-badge">0</span>
+    </a>
+</div>
+        <div class="icon" id="userIcon" style="cursor:pointer;">👤</div>
+    </div>
+</header>
+
+<!-- BANNER CAROUSEL -->
+<div class="banner">
+    <div class="banner-track" id="bannerTrack">
+        <div class="banner-slide" style="background:linear-gradient(135deg,#dbeafe,#eff6ff);">
+            <span>🖥️ Up to 30% Off Gaming Monitors — Limited Time!</span>
+        </div>
+        <div class="banner-slide" style="background:linear-gradient(135deg,#dbeafe,#e0f2fe);">
+            <span>🎮 New Arrivals: Latest GPUs from Nvidia &amp; AMD</span>
+        </div>
+        <div class="banner-slide" style="background:linear-gradient(135deg,#e0f2fe,#f0f9ff);">
+            <span>⌨️ Free Shipping on All Peripherals This Week</span>
+        </div>
+        <div class="banner-slide" style="background:linear-gradient(135deg,#dbeafe,#ede9fe);">
+            <span>🔥 Bundle Deals — Save More When You Buy More</span>
+        </div>
+    </div>
+    <div class="banner-indicators" id="bannerIndicators">
+        <span class="banner-dot active" onclick="goToBanner(0)"></span>
+        <span class="banner-dot" onclick="goToBanner(1)"></span>
+        <span class="banner-dot" onclick="goToBanner(2)"></span>
+        <span class="banner-dot" onclick="goToBanner(3)"></span>
+    </div>
+</div>
+
+<!-- PROMO ITEM -->
+<div class="promo-section">
+
+    <div class="section-title"><strong>Promotion</strong></div>
+    <div class="divider"></div>
+
+    <!-- 左 -->
+    <div class="arrow left" onclick="slideLeft()">❮</div>
+
+    <!-- 中间 -->
+    <div class="promo-wrapper">
+        <div class="promo-grid" id="promoGrid">
+
+            <div class="product-card">
+                <div class="product-image" onclick="location.href='product-detail.html?id=1'" style="cursor:pointer;">product picture<div class="favorite-icon" data-id="1" onclick="event.stopPropagation();toggleFavorite(1,this)">❤</div></div>
+                <div class="price-rating">ASUS ROG Strix<br>RM 1299 <span style="color:#f59e0b;">★</span>4.5</div>
+                <div class="button-group">
+                    <button class="btn-add" onclick="addItemToCart(1)">🛒 Add to Cart</button>
+                    <button class="btn-buy" onclick="location.href='product-detail.html?id=1'">Buy Now</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image" onclick="location.href='product-detail.html?id=2'" style="cursor:pointer;">product picture<div class="favorite-icon" data-id="2" onclick="event.stopPropagation();toggleFavorite(2,this)">❤</div></div>
+                <div class="price-rating">MSI Gaming Pro<br>RM 1499 <span style="color:#f59e0b;">★</span>4.7</div>
+                <div class="button-group">
+                    <button class="btn-add" onclick="addItemToCart(2)">🛒 Add to Cart</button>
+                    <button class="btn-buy" onclick="location.href='product-detail.html?id=2'">Buy Now</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image" onclick="location.href='product-detail.html?id=7'" style="cursor:pointer;">product picture<div class="favorite-icon" data-id="7" onclick="event.stopPropagation();toggleFavorite(7,this)">❤</div></div>
+                <div class="price-rating">NVIDIA RTX 3080<br>RM 699 <span style="color:#f59e0b;">★</span>4.9</div>
+                <div class="button-group">
+                    <button class="btn-add" onclick="addItemToCart(7)">🛒 Add to Cart</button>
+                    <button class="btn-buy" onclick="location.href='product-detail.html?id=7'">Buy Now</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image" onclick="location.href='product-detail.html?id=5'" style="cursor:pointer;">product picture<div class="favorite-icon" data-id="5" onclick="event.stopPropagation();toggleFavorite(5,this)">❤</div></div>
+                <div class="price-rating">Razer Keyboard<br>RM 199 <span style="color:#f59e0b;">★</span>4.8</div>
+                <div class="button-group">
+                    <button class="btn-add" onclick="addItemToCart(5)">🛒 Add to Cart</button>
+                    <button class="btn-buy" onclick="location.href='product-detail.html?id=5'">Buy Now</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image" onclick="location.href='product-detail.html?id=15'" style="cursor:pointer;">product picture<div class="favorite-icon" data-id="15" onclick="event.stopPropagation();toggleFavorite(15,this)">❤</div></div>
+                <div class="price-rating">Gigabyte RX 6700 XT<br>RM 599 <span style="color:#f59e0b;">★</span>4.7</div>
+                <div class="button-group">
+                    <button class="btn-add" onclick="addItemToCart(15)">🛒 Add to Cart</button>
+                    <button class="btn-buy" onclick="location.href='product-detail.html?id=15'">Buy Now</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image" onclick="location.href='product-detail.html?id=8'" style="cursor:pointer;">product picture<div class="favorite-icon" data-id="8" onclick="event.stopPropagation();toggleFavorite(8,this)">❤</div></div>
+                <div class="price-rating">Samsung 27" Monitor<br>RM 349 <span style="color:#f59e0b;">★</span>4.6</div>
+                <div class="button-group">
+                    <button class="btn-add" onclick="addItemToCart(8)">🛒 Add to Cart</button>
+                    <button class="btn-buy" onclick="location.href='product-detail.html?id=8'">Buy Now</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image" onclick="location.href='product-detail.html?id=6'" style="cursor:pointer;">product picture<div class="favorite-icon" data-id="6" onclick="event.stopPropagation();toggleFavorite(6,this)">❤</div></div>
+                <div class="price-rating">Logitech G502 Mouse<br>RM 79 <span style="color:#f59e0b;">★</span>4.2</div>
+                <div class="button-group">
+                    <button class="btn-add" onclick="addItemToCart(6)">🛒 Add to Cart</button>
+                    <button class="btn-buy" onclick="location.href='product-detail.html?id=6'">Buy Now</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- 右 -->
+    <div class="arrow right" onclick="slideRight()">❯</div>
+
+</div>
+
+<!-- CATEGORY -->
+
+<div class="category-section">
+
+    <div class="section-title"><strong>Categories By Brand</strong></div>
+    <div class="category-grid">
+        <button onclick="location.href='product-list.html?search=asus'">Asus</button>
+        <button onclick="location.href='product-list.html?search=msi'">Msi</button>
+        <button onclick="location.href='product-list.html?search=razer'">Razer</button>
+        <button onclick="location.href='product-list.html?search=amd'">Amd</button>
+        <button onclick="location.href='product-list.html?search=intel'">Intel</button>
+        <button onclick="location.href='product-list.html?search=nvidia'">Nvidia</button>
+        <button onclick="location.href='product-list.html?search=gigabite'">Gigabite</button>
+        <button onclick="location.href='product-list.html?search=logitech'">Logitech</button>
+    </div>
+
+</div>
+
+<!-- PRODUCTS -->
+<div class="products-section">
+    <div class="section-title"><strong>Product</strong></div>
+    <div class="products-container">
+        <div class="products-grid" id="homeGrid"></div>
+    </div>
+    <div class="pagination" id="homePageNav"></div>
+</div>
+
+<!-- FOOTER ------------------------------------------------------------------------------------------------------------------>
+<footer class="footer">
+  <div class="footer-content">
+
+    <!-- CUSTOMER -->
+    <div class="footer-box">
+      <h3>Customer Service</h3>
+      <a href="#">Help Centre</a>
+      <a href="#">How to Buy</a>
+      <a href="#">Refund & Return</a>
+      <a href="#">Contact Us</a>
+    </div>
+
+    <!-- BRANDS -->
+    <div class="footer-box">
+      <h3>Brands</h3>
+      <a href="product-list.html?search=asus">Asus</a>
+      <a href="product-list.html?search=msi">Msi</a>
+      <a href="product-list.html?search=razer">Razer</a>
+      <a href="product-list.html?search=amd">Amd</a>
+      <a href="product-list.html?search=intel">Intel</a>
+      <a href="product-list.html?search=nvidia">Nvidia</a>
+      <a href="product-list.html?search=gigabite">Gigabite</a>
+      <a href="product-list.html?search=logitech">Logitech</a>
+    </div>
+
+    <!-- PAYMENT -->
+    <div class="footer-box">
+      <h3>Payment Method</h3>
+
+      <div class="logo-grid">
+        <div>logo</div><div>logo</div><div>logo</div><div>logo</div>
+        <div>logo</div><div>logo</div><div>logo</div><div>logo</div>
+      </div>
+
+      <h4>Logistics</h4>
+
+      <div class="logo-grid">
+        <div>logo</div><div>logo</div><div>logo</div>
+        <div>logo</div><div>logo</div>
+      </div>
+    </div>
+
+    <!-- FOLLOW -->
+    <div class="footer-box">
+      <h3>Follow us</h3>
+
+      <div class="logo-row">
+        <div>logo</div>
+        <div>logo</div>
+        <div>logo</div>
+        <div>logo</div>
+      </div>
+
+      <p>Leave a review to us:</p>
+
+      <div class="review-box">
+        <textarea placeholder="text box"></textarea>
+        <button class="submit-btn">Submit</button>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    Copyright 2026.
+  </div>
+</footer>
+<!-- Hambuger -->
+<div class="overlay" id="overlay" onclick="closeMenu()"></div>
+
+<!-- MENU -->
+<div class="side-menu" id="sideMenu">
+
+    <div class="menu-header">
+        <span>Menu</span>
+        <span class="close-btn" onclick="closeMenu()">✕</span>
+    </div>
+
+    <div class="menu-item" onclick="location.href='index.html'" style="cursor:pointer;">🏠 Home</div>
+    <div class="menu-item" onclick="toggleDropdown('favDropdown')" style="cursor:pointer;">❤ Favorites ▾</div>
+    <div class="dropdown" id="favDropdown">
+        <div id="favoritesPanel"><div style="padding:8px 16px;color:#888;font-size:13px;">No favorites yet</div></div>
+    </div>
+    <div class="menu-item" onclick="location.href='cart.html'" style="cursor:pointer;">🛒 Cart</div>
+
+    <!-- categories -->
+    <div class="menu-item" onclick="toggleDropdown('catDropdown')">
+        ☰ Categories ▾
+    </div>
+    <div class="dropdown" id="catDropdown">
+        <div>Item 1</div>
+        <div>Item 2</div>
+        <div>Item 3</div>
+    </div>
+
+    <!-- brands -->
+    <div class="menu-item" onclick="toggleDropdown('brandDropdown')">
+        ☰ Brands ▾
+    </div>
+    <div class="dropdown" id="brandDropdown">
+        <div>Asus</div>
+        <div>Msi</div>
+        <div>Razer</div>
+        <div>Amd</div>
+    </div>
+
+</div>
+
+
+<div class="popup" id="popupBox">
+    
+    <div class="popup-icon">i</div>
+
+    <div class="popup-content">
+        <div class="popup-text">
+            this is a pop up message:<br>
+            XXXXXXXXXXXXXXXXXXXX<br>
+            XXXXXXXXXXXXXXXXXXXX
+        </div>
+    </div>
+
+    <div class="popup-close" onclick="closePopup()">✕</div>
+
+</div>
+<!-- 产品区域 -->
+<div id="productsGrid" class="products-grid"></div>
+
+<!-- ❗ No Results（默认隐藏） -->
+<div id="noResultsBox" class="no-results" style="display: none;">
+
+    <div class="warning-triangle">
+        <div class="warning-icon">!</div>
+    </div>
+
+    <h2>No Results Found For:</h2>
+    <p id="searchText">"XXXXX"</p>
+
+</div>
+
+<!-- login-->
+<div class="login-overlay" id="loginOverlay" onclick="closeLogin()"></div>
+
+<div class="login-popup" id="loginPopup">
+
+    <button class="login-close" onclick="closeLogin()">✕</button>
+
+    <h2>Login</h2>
+
+    <label>Email:</label>
+    <div class="password-box"><input type="email" id="loginEmail" placeholder="E.g. user@gmail.com"></div>
+
+    <label>Password:</label>
+    <div class="password-box">
+        <input type="password" id="loginPasswordInput" placeholder="Enter your password">
+        <span onclick="togglePassword('loginPasswordInput')">👁</span>
+    </div>
+
+    <div class="forgot">Forget Password?</div>
+
+    <button class="login-btn" onclick="doLogin()">Login</button>
+
+    <div class="divider1">
+        <span>or continue with</span>
+    </div>
+
+    <button class="social-btn google" onclick="doGoogleLogin()">
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg">
+    google login
+    </button>
+
+    <button class="social-btn apple" onclick="doAppleLogin()">
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apple/apple-original.svg">
+    apple login
+    </button>
+
+
+    <div class="signup-text">
+        Don't have an account? <span onclick="goSignup()" style="cursor:pointer;text-decoration:underline;">Sign Up</span>
+    </div>
+
+</div>
+<!-- Signup -->
+<div class="signup-overlay" id="signupOverlay"></div>
+
+<div class="signup-popup" id="signupPopup">
+    <button class="signup-close" onclick="closeSignup()">✕</button>
+
+    <h2>Signup</h2>
+
+    <label>Email:</label>
+    <div class="password-row"><input type="email" id="signupEmailInput" placeholder="E.g. user@gmail.com"></div>
+
+    <label>Password:</label>
+    <div class="password-row">
+        <input type="password" id="signupPasswordInput" placeholder="Enter your password" oninput="checkPasswordRules(this.value)">
+        <span class="eye" onclick="togglePassword('signupPasswordInput')">👁</span>
+    </div>
+
+    <div class="password-rules">
+        <label><input type="checkbox" id="rule-length"> 8-16 characters</label>
+        <label><input type="checkbox" id="rule-special"> At least 1 special character</label>
+        <label><input type="checkbox" id="rule-upper"> At least 1 uppercase letter</label>
+        <label><input type="checkbox" id="rule-lower"> At least 1 lowercase letter</label>
+        <label><input type="checkbox" id="rule-number"> At least 1 number</label>
+    </div>
+
+    <label>Confirm password:</label>
+    <div class="password-row">
+        <input type="password" id="confirmPassword" placeholder="Confirm your password">
+        <span class="eye" onclick="togglePassword('confirmPassword')">👁</span>
+    </div>
+
+    <button class="signup-btn" onclick="doSignup()">Sign Up</button>
+
+    <div class="login-text">
+        Already have an account? <span onclick="goLogin()">Login</span>
+    </div>
+</div>
+
+<script src="script.js"></script>
+<script>
+// Banner carousel
+var bannerIndex = 0;
+var bannerTotal = 4;
+var bannerTimer = setInterval(nextBanner, 4000);
+
+function goToBanner(index) {
+    bannerIndex = index;
+    applyBanner();
+    resetBannerTimer();
+}
+
+function nextBanner() {
+    bannerIndex = (bannerIndex + 1) % bannerTotal;
+    applyBanner();
+}
+
+function applyBanner() {
+    document.getElementById('bannerTrack').style.transform =
+        'translateX(-' + (bannerIndex * 25) + '%)';
+    document.querySelectorAll('.banner-dot').forEach(function(dot, i) {
+        dot.classList.toggle('active', i === bannerIndex);
+    });
+}
+
+function resetBannerTimer() {
+    clearInterval(bannerTimer);
+    bannerTimer = setInterval(nextBanner, 4000);
+}
+</script>
+</body>
+</html>
