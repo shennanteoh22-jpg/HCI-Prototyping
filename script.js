@@ -429,7 +429,7 @@ function renderCartPage() {
         row.className = 'cart-item';
         row.innerHTML = `
             <div class="cart-product">
-                <div class="cart-img">IMG</div>
+                <div class="cart-img">${item.image ? `<img src="${item.image}" alt="${item.name}" style="width:100%;height:100%;object-fit:contain;">` : ''}</div>
                 <div>
                     <div style="font-weight:bold;font-size:13px;">${item.name}</div>
                     <div class="cart-desc">${item.variation || 'Standard'}</div>
@@ -1000,6 +1000,12 @@ function renderComparePage() {
         fill('cTDP',          s.tdp);
         var viewLink = document.getElementById('cViewDetail');
         if (viewLink) viewLink.href = 'product-detail.html?id=' + product.id;
+
+        var imgBox = document.getElementById('cProductImage');
+        if (imgBox && product.image) {
+            imgBox.innerHTML = '<img src="' + product.image + '" alt="' + product.name + '" style="width:100%;height:100%;object-fit:contain;">';
+            imgBox.style.background = '#fff';
+        }
     }
 
     // Render right side product grid (all products)
@@ -1016,7 +1022,9 @@ function renderComparePage() {
         var card = document.createElement('div');
         card.className = 'compare-product-card';
         card.innerHTML =
-            '<div class="compare-product-image" style="cursor:pointer;" onclick="location.href=\'compare-product.html?id=' + p.id + '\'">product<br>picture</div>' +
+            '<div class="compare-product-image" style="cursor:pointer;background:#fff;" onclick="location.href=\'compare-product.html?id=' + p.id + '\'">' +
+                (p.image ? '<img src="' + p.image + '" alt="' + p.name + '" style="width:100%;height:100%;object-fit:contain;">' : '') +
+            '</div>' +
             '<div class="compare-product-info">' +
                 '<div class="compare-price-rating" style="font-size:11px;text-align:center;">' + p.name + '<br>RM ' + p.price + ' <span style="color:#f59e0b;">★</span>' + p.rating + '</div>' +
                 '<button class="compare-btn" onclick="location.href=\'' + compareUrl + '\'">Compare</button>' +
@@ -1055,6 +1063,11 @@ function renderCompareProducts() {
         set(prefix + 'TDP',         s.tdp);
         var link = document.getElementById(prefix + 'ViewDetail');
         if (link) link.href = 'product-detail.html?id=' + prod.id;
+
+        var imgBox = document.getElementById(prefix + 'Image');
+        if (imgBox && prod.image) {
+            imgBox.innerHTML = '<img src="' + prod.image + '" alt="' + prod.name + '" style="width:100%;height:100%;object-fit:contain;">';
+        }
     }
 
     fillSide('p1', p1);

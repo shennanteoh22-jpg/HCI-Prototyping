@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(grep -l \"product picture\\\\|product-image\" \"c:/Users/User/OneDrive/Desktop/PC component/\"*.html)"
+    ]
+  }
+}
