@@ -1,7 +1,9 @@
 {
   "permissions": {
     "allow": [
-      "Bash(grep -l \"product picture\\\\|product-image\" \"c:/Users/User/OneDrive/Desktop/PC component/\"*.html)"
+      "Bash(grep -l \"product picture\\\\|product-image\" \"c:/Users/User/OneDrive/Desktop/PC component/\"*.html)",
+      "Bash(grep -rn \"product picture\\\\|>IMG<\\\\|>Image 1<\\\\|>Image 2<\\\\|>Image 3<\\\\|PRODUCT.*IMAGE\\\\|product<br>picture\\\\|>img<\" \"c:/Users/User/OneDrive/Desktop/PC component/\"*.html)",
+      "Bash(grep -rn \"cart-img\\\\|order-img\\\\|receipt-img\\\\|checkout-img\" \"c:/Users/User/OneDrive/Desktop/PC component/\"*.html \"c:/Users/User/OneDrive/Desktop/PC component/script.js\")"
     ]
   }
 }
