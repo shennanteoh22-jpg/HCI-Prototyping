@@ -234,11 +234,11 @@ document.addEventListener("DOMContentLoaded", function() {
         <span class="eye" onclick="togglePassword('signupPasswordInput')">👁</span>
     </div>
     <div class="password-rules">
-        <label><input type="checkbox"> 8-16 characters</label>
-        <label><input type="checkbox"> At least 1 special character</label>
-        <label><input type="checkbox"> At least 1 uppercase letter</label>
-        <label><input type="checkbox"> At least 1 lowercase letter</label>
-        <label><input type="checkbox"> At least 1 number</label>
+        <label><input type="checkbox" id="rule-length"> 8-16 characters</label>
+        <label><input type="checkbox" id="rule-special"> At least 1 special character</label>
+        <label><input type="checkbox" id="rule-upper"> At least 1 uppercase letter</label>
+        <label><input type="checkbox" id="rule-lower"> At least 1 lowercase letter</label>
+        <label><input type="checkbox" id="rule-number"> At least 1 number</label>
     </div>
     <label>Confirm password:</label>
     <div class="password-row">
