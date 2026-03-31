@@ -398,7 +398,7 @@
 // Banner carousel
 var bannerIndex = 0;
 var bannerTotal = 4;
-var bannerTimer = setInterval(nextBanner, 4000);
+var bannerTimer = setInterval(nextBanner, 5000);
 
 function goToBanner(index) {
     bannerIndex = index;
@@ -417,12 +417,22 @@ function applyBanner() {
     document.querySelectorAll('.banner-dot').forEach(function(dot, i) {
         dot.classList.toggle('active', i === bannerIndex);
     });
+    // restart Ken Burns on active slide
+    var slides = document.querySelectorAll('.banner-slide img');
+    slides.forEach(function(img, i) {
+        img.classList.remove('kb-active');
+        void img.offsetWidth; // reflow to restart animation
+        if (i === bannerIndex) img.classList.add('kb-active');
+    });
 }
 
 function resetBannerTimer() {
     clearInterval(bannerTimer);
-    bannerTimer = setInterval(nextBanner, 4000);
+    bannerTimer = setInterval(nextBanner, 5000);
 }
+
+// kick off on load
+applyBanner();
 </script>
 </body>
 </html>
