@@ -4020,4 +4020,38 @@ main,
     border-radius: 0;
 }
 .pg-num:hover { color: #555; }
+
+/* ===== MOBILE / TABLET: TOUCH SCROLL FOR BANNER & PROMO ===== */
+@media (max-width: 1024px) {
+    /* Hide arrow buttons — native scroll takes over */
+    .promo-section .arrow {
+        display: none;
+    }
+
+    /* Make promo wrapper scrollable */
+    .promo-wrapper {
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scroll-snap-type: x mandatory;
+        scrollbar-width: none;       /* Firefox */
+        padding: 0 12px;
+        box-sizing: border-box;
+    }
+    .promo-wrapper::-webkit-scrollbar {
+        display: none;              /* Chrome / Safari */
+    }
+
+    /* Cancel any JS-applied transform so it doesn't fight CSS scroll */
+    .promo-grid {
+        transform: none !important;
+        gap: 12px;
+    }
+
+    /* Each card snaps into place */
+    .promo-grid .product-card {
+        scroll-snap-align: start;
+        flex-shrink: 0;
+    }
+}
 .pg-num.pg-cur { color: #111111; font-weight: 900; text-decoration: underline; }
