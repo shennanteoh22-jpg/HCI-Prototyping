@@ -15,17 +15,18 @@
 .banner-slide {
     width: 25%;
     height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: 26px;
-    font-weight: 700;
-    color: #111;
     flex-shrink: 0;
-    padding: 0 40px;
-    text-align: center;
-    letter-spacing: 0.3px;
+    position: relative;
+    overflow: hidden;
+    padding: 0;
+}
+
+.banner-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
 }
 .banner-indicators {
     position: absolute;
