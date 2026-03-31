@@ -475,7 +475,7 @@ function renderCheckoutSummary() {
             row.className = 'summary-product-row';
             row.innerHTML = `
                 <div class="summary-prod-detail">
-                    <div class="summary-prod-img">IMG</div>
+                    <div class="summary-prod-img">${item.image ? `<img src="${item.image}" alt="${item.name}" style="width:100%;height:100%;object-fit:contain;">` : ''}</div>
                     <div>
                         <div class="summary-prod-name">${item.name}</div>
                         <div class="summary-prod-desc">${item.variation || 'Standard'}</div>
