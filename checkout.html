@@ -138,44 +138,53 @@
 
                 <div class="payment-group">
                     <div class="payment-option active" id="ewalletToggle" onclick="togglePayment('ewalletItems','ewalletToggle')">
-                        <span class="pay-dot active-dot">●</span> E-WALLET <span class="pay-arrow">▲</span>
+                        <span class="pay-dot active-dot" id="ewalletDot" style="display:none;">●</span> E-WALLET <span class="pay-arrow">▲</span>
                     </div>
                     <div class="payment-sub-items" id="ewalletItems">
-                        <div class="payment-sub-item"><span class="pay-logo-box">TNG</span><span>Touch 'n Go eWallet</span></div>
-                        <div class="payment-sub-item"><span class="pay-logo-box">GP</span><span>GrabPay</span></div>
-                        <div class="payment-sub-item"><span class="pay-logo-box">SP</span><span>ShopeePay</span></div>
-                        <div class="payment-sub-item"><span class="pay-logo-box">BST</span><span>Boost</span></div>
+                        <div class="payment-sub-item" onclick="selectPaymentMethod(this)"><span class="pay-logo-box">TNG</span><span>Touch 'n Go eWallet</span></div>
+                        <div class="payment-sub-item" onclick="selectPaymentMethod(this)"><span class="pay-logo-box">GP</span><span>GrabPay</span></div>
+                        <div class="payment-sub-item" onclick="selectPaymentMethod(this)"><span class="pay-logo-box">SP</span><span>ShopeePay</span></div>
+                        <div class="payment-sub-item" onclick="selectPaymentMethod(this)"><span class="pay-logo-box">BST</span><span>Boost</span></div>
                     </div>
                 </div>
 
-                <div class="payment-option" id="bnplToggle" onclick="togglePayment('bnplItems','bnplToggle')">○ BUY NOW PAY LATER <span class="pay-arrow">▼</span></div>
+                <div class="payment-option" id="bnplToggle" onclick="togglePayment('bnplItems','bnplToggle')">
+                    <span class="pay-dot" id="bnplDot" style="display:none;color:#4caf50;margin-right:4px;">●</span>○ BUY NOW PAY LATER <span class="pay-arrow">▼</span>
+                </div>
                 <div class="payment-sub-items" id="bnplItems" style="display:none;">
-                    <div class="payment-sub-item"><span class="pay-logo-box">AT</span><span>Atome</span></div>
-                    <div class="payment-sub-item"><span class="pay-logo-box">SG</span><span>Split</span></div>
-                    <div class="payment-sub-item"><span class="pay-logo-box">FPL</span><span>FavePay Later</span></div>
+                    <div class="payment-sub-item" onclick="selectPaymentMethod(this)"><span class="pay-logo-box">AT</span><span>Atome</span></div>
+                    <div class="payment-sub-item" onclick="selectPaymentMethod(this)"><span class="pay-logo-box">SG</span><span>Split</span></div>
+                    <div class="payment-sub-item" onclick="selectPaymentMethod(this)"><span class="pay-logo-box">FPL</span><span>FavePay Later</span></div>
                 </div>
 
-                <div class="payment-option" id="obToggle" onclick="togglePayment('obItems','obToggle')">○ ONLINE BANKING <span class="pay-arrow">▼</span></div>
+                <div class="payment-option" id="obToggle" onclick="togglePayment('obItems','obToggle')">
+                    <span class="pay-dot" id="obDot" style="display:none;color:#4caf50;margin-right:4px;">●</span>○ ONLINE BANKING <span class="pay-arrow">▼</span>
+                </div>
                 <div class="payment-sub-items" id="obItems" style="display:none;">
-                    <div class="payment-sub-item"><span class="pay-logo-box">M2U</span><span>Maybank2u</span></div>
-                    <div class="payment-sub-item"><span class="pay-logo-box">CIMB</span><span>CIMB Clicks</span></div>
-                    <div class="payment-sub-item"><span class="pay-logo-box">PBB</span><span>Public Bank</span></div>
-                    <div class="payment-sub-item"><span class="pay-logo-box">RHB</span><span>RHB Now</span></div>
+                    <div class="payment-sub-item" onclick="selectPaymentMethod(this)"><span class="pay-logo-box">M2U</span><span>Maybank2u</span></div>
+                    <div class="payment-sub-item" onclick="selectPaymentMethod(this)"><span class="pay-logo-box">CIMB</span><span>CIMB Clicks</span></div>
+                    <div class="payment-sub-item" onclick="selectPaymentMethod(this)"><span class="pay-logo-box">PBB</span><span>Public Bank</span></div>
+                    <div class="payment-sub-item" onclick="selectPaymentMethod(this)"><span class="pay-logo-box">RHB</span><span>RHB Now</span></div>
                 </div>
 
-                <div class="payment-option" id="cdToggle" onclick="togglePayment('cdItems','cdToggle')">○ CREDIT / DEBIT CARD <span class="pay-arrow">▼</span></div>
+                <div class="payment-option" id="cdToggle" onclick="togglePayment('cdItems','cdToggle')">
+                    <span class="pay-dot" id="cdDot" style="display:none;color:#4caf50;margin-right:4px;">●</span>○ CREDIT / DEBIT CARD <span class="pay-arrow">▼</span>
+                </div>
                 <div class="payment-sub-items" id="cdItems" style="display:none;">
-                    <div class="payment-sub-item"><span class="pay-logo-box">VISA</span><span>Visa</span></div>
-                    <div class="payment-sub-item"><span class="pay-logo-box">MC</span><span>Mastercard</span></div>
-                    <div class="payment-sub-item"><span class="pay-logo-box">AMEX</span><span>American Express</span></div>
+                    <div class="payment-sub-item" onclick="selectPaymentMethod(this)"><span class="pay-logo-box">VISA</span><span>Visa</span></div>
+                    <div class="payment-sub-item" onclick="selectPaymentMethod(this)"><span class="pay-logo-box">MC</span><span>Mastercard</span></div>
+                    <div class="payment-sub-item" onclick="selectPaymentMethod(this)"><span class="pay-logo-box">AMEX</span><span>American Express</span></div>
                 </div>
 
-                <div class="payment-option" id="otherToggle" onclick="togglePayment('otherItems','otherToggle')">○ OTHER <span class="pay-arrow">▼</span></div>
+                <div class="payment-option" id="otherToggle" onclick="togglePayment('otherItems','otherToggle')">
+                    <span class="pay-dot" id="otherDot" style="display:none;color:#4caf50;margin-right:4px;">●</span>○ OTHER <span class="pay-arrow">▼</span>
+                </div>
                 <div class="payment-sub-items" id="otherItems" style="display:none;">
-                    <div class="payment-sub-item"><span class="pay-logo-box">COD</span><span>Cash on Delivery</span></div>
+                    <div class="payment-sub-item" onclick="selectPaymentMethod(this)"><span class="pay-logo-box">COD</span><span>Cash on Delivery</span></div>
                 </div>
 
             </div>
+            <span class="field-error" id="errPayment"></span>
 
             <!-- PROMO -->
             <p class="section-label">PROMO CODE</p>
@@ -385,6 +394,48 @@
     </div>
 </div>
 
+<!-- PAYMENT SUCCESS POPUP -->
+<div class="cancel-overlay" id="paySuccessOverlay"></div>
+<div class="cancel-modal" id="paySuccessModal" style="display:none;max-width:560px;width:90%;text-align:center;">
+    <div style="margin-bottom:12px;">
+        <svg viewBox="0 0 100 100" width="80" height="80">
+            <circle cx="50" cy="50" r="45" fill="none" stroke="#28A745" stroke-width="3"/>
+            <path d="M 28 50 L 44 66 L 72 34" fill="none" stroke="#28A745" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+    </div>
+    <h2 style="color:#28A745;margin:0 0 8px;">Payment Successful!</h2>
+    <p style="color:#555;margin:0 0 16px;">Your order has been placed. Thank you!</p>
+    <div class="order-summary-details" style="text-align:left;margin-bottom:16px;">
+        <div class="summary-row"><span class="label">Order ID</span><span class="value" id="popOrderId">—</span></div>
+        <div class="summary-row"><span class="label">Amount</span><span class="value" id="popAmount">—</span></div>
+        <div class="summary-row"><span class="label">Payment</span><span class="value" id="popPayMethod">—</span></div>
+        <div class="summary-row"><span class="label">Email</span><span class="value" id="popEmail">—</span></div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:10px;">
+        <button class="btn-view-order" style="background:#1976d2;color:#fff;border:none;padding:10px 20px;border-radius:6px;cursor:pointer;font-size:14px;" onclick="window.location.href='order-receipt.html'">View Order Details</button>
+        <button class="btn-back-home" style="background:#555;color:#fff;border:none;padding:10px 20px;border-radius:6px;cursor:pointer;font-size:14px;" onclick="window.location.href='index.html'">Back to Main Page</button>
+    </div>
+</div>
+
+<!-- PAYMENT FAILED POPUP -->
+<div class="cancel-overlay" id="payFailedOverlay"></div>
+<div class="cancel-modal" id="payFailedModal" style="display:none;max-width:400px;text-align:center;">
+    <div style="margin-bottom:12px;">
+        <svg viewBox="0 0 100 100" width="80" height="80">
+            <circle cx="50" cy="50" r="45" fill="none" stroke="#e53935" stroke-width="3"/>
+            <line x1="30" y1="30" x2="70" y2="70" stroke="#e53935" stroke-width="6" stroke-linecap="round"/>
+            <line x1="70" y1="30" x2="30" y2="70" stroke="#e53935" stroke-width="6" stroke-linecap="round"/>
+        </svg>
+    </div>
+    <h2 style="color:#e53935;margin:0 0 8px;">Payment Failed!</h2>
+    <p style="color:#555;margin:0 0 8px;">Oops! Your payment could not be processed.</p>
+    <p style="color:#e53935;font-size:13px;margin:0 0 16px;">GrabPay transaction declined. Please select a different payment method and try again.</p>
+    <div style="display:flex;flex-direction:column;gap:10px;">
+        <button style="background:#e53935;color:#fff;border:none;padding:10px 20px;border-radius:6px;cursor:pointer;font-size:14px;" onclick="closePayFailed()">Try Again</button>
+        <button style="background:#555;color:#fff;border:none;padding:10px 20px;border-radius:6px;cursor:pointer;font-size:14px;" onclick="window.location.href='index.html'">Back to Main Page</button>
+    </div>
+</div>
+
 <script>
 function toggleStateBox() {
     var box = document.getElementById('stateBox');
@@ -416,6 +467,9 @@ function hideCancelWarning() {
     document.getElementById("cancelOverlay").style.display = "none";
     document.getElementById("cancelModal").style.display = "none";
 }
+var selectedPaymentSubItem = null;
+var selectedPaymentLabel   = '';
+
 function togglePayment(id, toggleId) {
     const el = document.getElementById(id);
     if (!el) return;
@@ -425,6 +479,44 @@ function togglePayment(id, toggleId) {
         const arrow = document.querySelector('#' + toggleId + ' .pay-arrow');
         if (arrow) arrow.textContent = isOpen ? "▼" : "▲";
     }
+}
+function selectPaymentMethod(el) {
+    document.querySelectorAll('.payment-sub-item').forEach(function(item) {
+        item.classList.remove('active');
+    });
+    el.classList.add('active');
+    selectedPaymentLabel   = el.querySelector('span:last-child').textContent.trim();
+    selectedPaymentSubItem = selectedPaymentLabel.toLowerCase().replace(/['\s]/g, '');
+
+    // Show green dot on the parent group header
+    var parentItems = el.closest('.payment-sub-items');
+    var dotIds = { ewalletItems:'ewalletDot', bnplItems:'bnplDot', obItems:'obDot', cdItems:'cdDot', otherItems:'otherDot' };
+    Object.values(dotIds).forEach(function(d) {
+        var dot = document.getElementById(d);
+        if (dot) dot.style.display = 'none';
+    });
+    if (parentItems) {
+        var dotId = dotIds[parentItems.id];
+        if (dotId) {
+            var dot = document.getElementById(dotId);
+            if (dot) dot.style.display = 'inline';
+        }
+    }
+
+    var errPay = document.getElementById('errPayment');
+    if (errPay) errPay.textContent = '';
+}
+function showPaySuccess(order) {
+    document.getElementById('popOrderId').textContent   = order.orderId;
+    document.getElementById('popAmount').textContent    = 'RM ' + order.grandTotal.toFixed(2);
+    document.getElementById('popPayMethod').textContent = order.paymentMethod;
+    document.getElementById('popEmail').textContent     = order.customer.email || '—';
+    document.getElementById('paySuccessOverlay').style.display = 'block';
+    document.getElementById('paySuccessModal').style.display   = 'block';
+}
+function closePayFailed() {
+    document.getElementById('payFailedOverlay').style.display = 'none';
+    document.getElementById('payFailedModal').style.display   = 'none';
 }
 function searchProduct() {
     const input = document.getElementById("searchInput").value;

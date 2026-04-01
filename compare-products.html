@@ -41,6 +41,9 @@
             <div class="compare-modal-content">
                 <!-- LEFT PRODUCT -->
                 <div class="compare-product-column">
+                    <div class="compare-col-topbar">
+                        <button class="compare-col-close" onclick="location.href='index.html'">✕</button>
+                    </div>
                     <div class="compare-product-image-box" id="p1Image">PRODUCT<br>IMAGE</div>
 
                     <div class="compare-specs-wrapper">
@@ -109,14 +112,19 @@
                     </div>
 
                     <div class="compare-actions">
-                        <button class="btn-add" id="p1AddCart">Add to cart</button>
-                        <a href="#" class="compare-detail-link" id="p1ViewDetail">View Product Detail</a>
-                        <button class="compare-other-link" id="p1Switch">Switch Other Product</button>
+                        <button class="compare-btn-3d" id="p1AddCart">Add to Cart</button>
+                        <div style="display:flex;gap:10px;">
+                            <a href="#" class="compare-btn-3d" id="p1ViewDetail">View Product Detail</a>
+                            <button class="compare-btn-3d" id="p1Switch">Switch Other Product</button>
+                        </div>
                     </div>
                 </div>
 
                 <!-- RIGHT PRODUCT -->
                 <div class="compare-product-column">
+                    <div class="compare-col-topbar">
+                        <button class="compare-col-close" onclick="location.href='index.html'">✕</button>
+                    </div>
                     <div class="compare-product-image-box" id="p2Image">PRODUCT<br>IMAGE</div>
 
                     <div class="compare-specs-wrapper">
@@ -185,9 +193,11 @@
                     </div>
 
                     <div class="compare-actions">
-                        <button class="btn-add" id="p2AddCart">Add to cart</button>
-                        <a href="#" class="compare-detail-link" id="p2ViewDetail">View Product Detail</a>
-                        <button class="compare-other-link" id="p2Switch">Switch Other Product</button>
+                        <button class="compare-btn-3d" id="p2AddCart">Add to Cart</button>
+                        <div style="display:flex;gap:10px;">
+                            <a href="#" class="compare-btn-3d" id="p2ViewDetail">View Product Detail</a>
+                            <button class="compare-btn-3d" id="p2Switch">Switch Other Product</button>
+                        </div>
                     </div>
                 </div>
             </div>

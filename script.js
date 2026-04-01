@@ -466,7 +466,7 @@ function renderCartPage() {
 // CHECKOUT PAGE – dynamic render + price calculation
 // ============================================================
 const SHIPPING_FEES = { standard: 4.90, economy: 3.60, express: 12.00, nextday: 18.00 };
-let selectedShipping = 'standard';
+let selectedShipping = null;
 let appliedDiscount  = 0;
 
 function renderCheckoutSummary() {
@@ -662,6 +662,18 @@ function placeOrder() {
         }
     }
 
+    // Payment sub-item validation
+    var errPayment = document.getElementById('errPayment');
+    if (errPayment) {
+        var paySubItem = (typeof selectedPaymentSubItem !== 'undefined') ? selectedPaymentSubItem : null;
+        if (!paySubItem) {
+            errPayment.textContent = 'Please select a payment method';
+            valid = false;
+        } else {
+            errPayment.textContent = '';
+        }
+    }
+
     if (!valid) return;
 
     const user = getUser();
@@ -675,9 +687,67 @@ function placeOrder() {
         showToast('Your cart is empty.', 'error');
         return;
     }
+
+    // --- Build and save order data ---
+    const _g = id => { const el = document.getElementById(id); return el ? el.value.trim() : ''; };
+    const _now = new Date();
+    const _pad = n => String(n).padStart(2, '0');
+    const _dateStr = `${_pad(_now.getDate())}/${_pad(_now.getMonth()+1)}/${_now.getFullYear()}`;
+    const _orderId = 'OR' + _now.getFullYear() + _pad(_now.getMonth()+1) + _pad(_now.getDate())
+                   + _pad(_now.getHours()) + _pad(_now.getMinutes()) + _pad(_now.getSeconds());
+
+    // use the explicitly selected payment sub-item label
+    let _payMethod = (typeof selectedPaymentLabel !== 'undefined' && selectedPaymentLabel) ? selectedPaymentLabel : 'Unknown';
+
+    const _subtotal   = cart.reduce((s, i) => s + i.price * i.qty, 0);
+    const _shipCost   = SHIPPING_FEES[selectedShipping] || 4.90;
+    const _shipLabel  = document.getElementById('shippingLabel') ? document.getElementById('shippingLabel').textContent : 'Standard Delivery - RM 4.90';
+    const _grandTotal = Math.max(0, _subtotal + _shipCost - appliedDiscount);
+
+    const _stateEl = document.getElementById('stateText');
+    const _orderData = {
+        orderId:       _orderId,
+        orderDate:     _dateStr,
+        customer: {
+            firstName: _g('inputFirstName'),
+            lastName:  _g('inputLastName'),
+            email:     _g('inputEmail'),
+            phone:     _g('inputPhone'),
+            address1:  _g('inputAddress1'),
+            postcode:  _g('inputPostcode'),
+            city:      _g('inputCity'),
+            state:     _stateEl ? _stateEl.textContent.trim() : ''
+        },
+        items: cart.map(item => ({
+            name:      item.name,
+            variation: item.variation || 'Standard',
+            qty:       item.qty,
+            price:     item.price,
+            subtotal:  item.price * item.qty
+        })),
+        shipping:      { method: _shipLabel, cost: _shipCost },
+        paymentMethod: _payMethod,
+        subtotal:      _subtotal,
+        discount:      appliedDiscount,
+        grandTotal:    _grandTotal
+    };
+    // --- end order data ---
+
+    // GrabPay → show failed popup; all others → success
+    const _isGrabPay = (typeof selectedPaymentSubItem !== 'undefined') &&
+                       selectedPaymentSubItem.toLowerCase().includes('grabpay');
+    if (_isGrabPay) {
+        document.getElementById('payFailedOverlay').style.display = 'block';
+        document.getElementById('payFailedModal').style.display   = 'block';
+        return;
+    }
+
+    localStorage.setItem('lastOrder', JSON.stringify(_orderData));
     saveCart([]);
     updateCartBadge();
-    window.location.href = 'payment-successful.html';
+    if (typeof showPaySuccess === 'function') {
+        showPaySuccess(_orderData);
+    }
 }
 
 // ============================================================
@@ -738,7 +808,7 @@ let currentPage = 1;
 let filteredProducts = [];
 
 function getItemsPerPage() {
-    return 35; // 7 columns × 5 rows
+    return 10; // 5 columns × 2 rows
 }
 
 function renderProductList() {
@@ -1297,6 +1367,7 @@ function toggleFavorite(id, el) {
     if (idx === -1) {
         favs.push(id);
         el.classList.add('active');
+        showToast('Favourite Added', 'success');
     } else {
         favs.splice(idx, 1);
         el.classList.remove('active');

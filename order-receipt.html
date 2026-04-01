@@ -5,43 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Order Receipt - Brian PC Component</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        @media print {
+            .header, .footer, .receipt-actions { display: none !important; }
+            body { background: #fff; }
+            .receipt-container { box-shadow: none; border: none; }
+        }
+    </style>
 </head>
 <body>
     <!-- HEADER -->
     <header class="header">
     <div class="header-left">
-        <button class="hamburger-menu" onclick="openMenu()">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
+        <span class="back-arrow" onclick="history.back()" style="cursor:pointer;">←</span>
     </div>
-    
+
     <div class="header-center">
         <a href="index.html" class="system-name">Brian PC Component</a>
     </div>
-    
+
     <div class="header-right">
         <div class="search-container">
-            <input type="text" id="searchInput" class="search-input" placeholder="">
-<button class="search-btn" onclick="goSearch()">🔍</button>
+            <input id="searchInput" type="text" placeholder="Search" onkeydown="if(event.key==='Enter') searchProduct()">
+            <button onclick="searchProduct()">🔍</button>
         </div>
-
-        <div class="icon-container">
-
-            <!-- ✅ CART -->
-            <a href="cart.html" class="cart-btn">
-                🛒
-                <span class="badge">2</span>
-            </a>
-
-            <!-- USER -->
-           <button class="user-btn" onclick="openLogin()">
-                👤
-                <span class="badge">1</span>
-            </button>
-
-        </div>
+        <div class="icon"><a href="cart.html">🛒<span class="badge cart-badge">0</span></a></div>
+        <div class="icon" id="userIcon" style="cursor:pointer;">👤</div>
     </div>
 </header>
 
@@ -58,15 +47,21 @@
                 <h3>Customer Information</h3>
                 <div class="info-row">
                     <span class="label">Customer Name:</span>
-                    <span class="value">xxxx</span>
+                    <span class="value" id="rcName">—</span>
                     <span class="label">Receipt Number:</span>
-                    <span class="value">ORxxxxxxxx</span>
+                    <span class="value" id="rcReceiptNo">—</span>
                 </div>
                 <div class="info-row">
                     <span class="label">Customer Address:</span>
-                    <span class="value">xxxx</span>
+                    <span class="value" id="rcAddress">—</span>
                     <span class="label">Receipt Date:</span>
-                    <span class="value">dd/mm/yyyy</span>
+                    <span class="value" id="rcDate">—</span>
+                </div>
+                <div class="info-row">
+                    <span class="label">Email:</span>
+                    <span class="value" id="rcEmail">—</span>
+                    <span class="label">Phone:</span>
+                    <span class="value" id="rcPhone">—</span>
                 </div>
             </div>
 
@@ -74,15 +69,19 @@
                 <h3>Order Information</h3>
                 <div class="info-row">
                     <span class="label">Order ID:</span>
-                    <span class="value">ORxxxxxxxx</span>
+                    <span class="value" id="rcOrderId">—</span>
                     <span class="label">Order Date:</span>
-                    <span class="value">dd/mm/yyyy</span>
+                    <span class="value" id="rcOrderDate">—</span>
                 </div>
                 <div class="info-row">
                     <span class="label">Payment Method:</span>
-                    <span class="value">E-Wallet</span>
+                    <span class="value" id="rcPayMethod">—</span>
                     <span class="label">Order Status:</span>
                     <span class="value status confirmed">Confirmed</span>
+                </div>
+                <div class="info-row">
+                    <span class="label">Shipping Method:</span>
+                    <span class="value" id="rcShipMethod">—</span>
                 </div>
             </div>
         </div>
@@ -101,23 +100,8 @@
                         <th>Subtotal</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <td>(1)</td>
-                        <td>Product Name</td>
-                        <td>Product Variation</td>
-                        <td>1</td>
-                        <td>RM (x.xx)</td>
-                        <td>RM (x.xx)</td>
-                    </tr>
-                    <tr>
-                        <td>(2)</td>
-                        <td>Product Name</td>
-                        <td>Product Variation</td>
-                        <td>1</td>
-                        <td>RM (x.xx)</td>
-                        <td>RM (x.xx)</td>
-                    </tr>
+                <tbody id="rcItemsBody">
+                    <tr><td colspan="6" style="text-align:center;color:#888;">No items</td></tr>
                 </tbody>
             </table>
         </div>
@@ -126,29 +110,25 @@
         <div class="pricing-summary">
             <div class="pricing-row">
                 <span class="label">Subtotal:</span>
-                <span class="value">RM (x.xx)</span>
-            </div>
-            <div class="pricing-row">
-                <span class="label">Tax:</span>
-                <span class="value">RM (x.xx)</span>
+                <span class="value" id="rcSubtotal">RM 0.00</span>
             </div>
             <div class="pricing-row">
                 <span class="label">Shipping:</span>
-                <span class="value">RM (x.xx)</span>
+                <span class="value" id="rcShipping">RM 0.00</span>
             </div>
             <div class="pricing-row">
                 <span class="label">Discount:</span>
-                <span class="value">- RM (x.xx)</span>
+                <span class="value" id="rcDiscount">- RM 0.00</span>
             </div>
             <div class="pricing-row total">
                 <span class="label">Grand Total:</span>
-                <span class="value">RM (x.xx)</span>
+                <span class="value" id="rcGrandTotal">RM 0.00</span>
             </div>
         </div>
 
         <!-- ACTIONS -->
         <div class="receipt-actions">
-            <button class="btn-print" onclick="window.print()">
+            <button class="btn-print" onclick="printReceipt()">
                 🖨️ Print Receipt
             </button>
             <button class="btn-download" onclick="downloadReceipt()">
@@ -237,11 +217,74 @@
   </div>
 </footer>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="script.js"></script>
     <script>
+        (function() {
+            const order = JSON.parse(localStorage.getItem('lastOrder') || 'null');
+            if (!order) return;
+            const el = id => document.getElementById(id);
+            const c = order.customer;
+
+            el('rcName').textContent       = c.firstName + ' ' + c.lastName;
+            el('rcReceiptNo').textContent  = order.orderId;
+            el('rcAddress').textContent    = [c.address1, c.city, c.postcode, c.state].filter(Boolean).join(', ');
+            el('rcDate').textContent       = order.orderDate;
+            el('rcEmail').textContent      = c.email;
+            el('rcPhone').textContent      = c.phone;
+            el('rcOrderId').textContent    = order.orderId;
+            el('rcOrderDate').textContent  = order.orderDate;
+            el('rcPayMethod').textContent  = order.paymentMethod;
+            el('rcShipMethod').textContent = order.shipping.method;
+
+            const tbody = el('rcItemsBody');
+            if (order.items && order.items.length > 0) {
+                tbody.innerHTML = order.items.map((item, i) => `
+                    <tr>
+                        <td>(${i + 1})</td>
+                        <td>${item.name}</td>
+                        <td>${item.variation}</td>
+                        <td>${item.qty}</td>
+                        <td>RM ${item.price.toFixed(2)}</td>
+                        <td>RM ${item.subtotal.toFixed(2)}</td>
+                    </tr>
+                `).join('');
+            }
+
+            el('rcSubtotal').textContent   = 'RM ' + order.subtotal.toFixed(2);
+            el('rcShipping').textContent   = 'RM ' + order.shipping.cost.toFixed(2);
+            el('rcDiscount').textContent   = '- RM ' + order.discount.toFixed(2);
+            el('rcGrandTotal').textContent = 'RM ' + order.grandTotal.toFixed(2);
+        })();
+
+        function printReceipt() {
+            window.onafterprint = function() {
+                window.location.href = 'order-receipt.html';
+            };
+            window.print();
+        }
+
         function downloadReceipt() {
-            alert('PDF download functionality to be implemented');
-            // Will implement actual PDF download functionality
+            const { jsPDF } = window.jspdf;
+            const receiptEl = document.querySelector('.receipt-container');
+            html2canvas(receiptEl, { scale: 2, useCORS: true }).then(function(canvas) {
+                const imgData = canvas.toDataURL('image/png');
+                const pdf = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
+                const pageW = pdf.internal.pageSize.getWidth();
+                const pageH = pdf.internal.pageSize.getHeight();
+                const imgW = pageW;
+                const imgH = (canvas.height * imgW) / canvas.width;
+                let y = 0;
+                while (y < imgH) {
+                    if (y > 0) pdf.addPage();
+                    pdf.addImage(imgData, 'PNG', 0, -y, imgW, imgH);
+                    y += pageH;
+                }
+                const order = JSON.parse(localStorage.getItem('lastOrder') || '{}');
+                const filename = 'Receipt_' + (order.orderId || 'order') + '.pdf';
+                pdf.save(filename);
+            });
         }
     </script>
 </body>

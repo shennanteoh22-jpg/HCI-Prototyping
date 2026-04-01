@@ -109,27 +109,79 @@ onkeydown="if(event.key==='Enter') searchProduct()">
     <div class="reviews2">
         <h3>Reviews</h3>
         <div class="review-container2" id="detailReviewContainer">
+
+            <!-- visible by default -->
             <div class="review-card2">
-                <div>Verified Buyer</div>
-                <div id="r1Stars">★★★★★</div>
-                <div>Great product! Works perfectly.</div>
+                <div class="review-user-row">
+                    <span class="review-avatar">👤</span>
+                    <span class="review-username">Alex T.</span>
+                    <span class="review-stars">★★★★★</span>
+                </div>
+                <div class="review-comment">Great product! Works perfectly out of the box. Totally worth the price.</div>
             </div>
             <div class="review-card2">
-                <div>Verified Buyer</div>
-                <div id="r2Stars">★★★★☆</div>
-                <div>Good value for money. Fast delivery.</div>
+                <div class="review-user-row">
+                    <span class="review-avatar">👤</span>
+                    <span class="review-username">Sarah K.</span>
+                    <span class="review-stars">★★★★☆</span>
+                </div>
+                <div class="review-comment">Good value for money and fast delivery. Packaging was secure and product arrived in perfect condition.</div>
             </div>
             <div class="review-card2">
-                <div>Verified Buyer</div>
-                <div id="r3Stars">★★★★★</div>
-                <div>Highly recommend. Excellent quality.</div>
+                <div class="review-user-row">
+                    <span class="review-avatar">👤</span>
+                    <span class="review-username">JasonLim</span>
+                    <span class="review-stars">★★★★★</span>
+                </div>
+                <div class="review-comment">Highly recommend this! Excellent build quality and performance exceeded my expectations.</div>
             </div>
+
+            <!-- hidden until Show More -->
+            <div class="review-card2 review-extra" style="display:none;">
+                <div class="review-user-row">
+                    <span class="review-avatar">👤</span>
+                    <span class="review-username">Wei Ming</span>
+                    <span class="review-stars">★★★★☆</span>
+                </div>
+                <div class="review-comment">Solid product. Setup was straightforward and it runs cool and quiet. Happy with the purchase.</div>
+            </div>
+            <div class="review-card2 review-extra" style="display:none;">
+                <div class="review-user-row">
+                    <span class="review-avatar">👤</span>
+                    <span class="review-username">Priya R.</span>
+                    <span class="review-stars">★★★★★</span>
+                </div>
+                <div class="review-comment">Bought this for my new build and it performs flawlessly. The quality is top-notch for the price.</div>
+            </div>
+            <div class="review-card2 review-extra" style="display:none;">
+                <div class="review-user-row">
+                    <span class="review-avatar">👤</span>
+                    <span class="review-username">ChenHao99</span>
+                    <span class="review-stars">★★★☆☆</span>
+                </div>
+                <div class="review-comment">Decent product overall. Does what it says. Delivery took a bit longer than expected but no complaints about the item itself.</div>
+            </div>
+
+        </div>
+        <div style="text-align:center;margin-top:18px;">
+            <button class="desc-toggle-btn" id="reviewToggleBtn" onclick="toggleReviews()">Show More ▼</button>
         </div>
     </div>
 
 </main>
 
 <script>
+// ── Reviews show more / show less ───────────────────────────
+let reviewsExpanded = false;
+function toggleReviews() {
+    reviewsExpanded = !reviewsExpanded;
+    document.querySelectorAll('.review-extra').forEach(function(card) {
+        card.style.display = reviewsExpanded ? 'block' : 'none';
+    });
+    document.getElementById('reviewToggleBtn').textContent =
+        reviewsExpanded ? 'Show Less ▲' : 'Show More ▼';
+}
+
 // ── Description show more / show less ───────────────────────
 let descExpanded = false;
 function toggleDesc() {
@@ -314,10 +366,9 @@ let currentDetailId = 1;
                 'major cities in Malaysia.</p>' +
             '</div>';
 
-        // Update review star colors
-        ['r1Stars','r2Stars','r3Stars'].forEach(function(rid) {
-            const el = document.getElementById(rid);
-            if (el) el.style.color = '#f59e0b';
+        // Colour all review stars
+        document.querySelectorAll('.review-stars').forEach(function(el) {
+            el.style.color = '#f59e0b';
         });
 
         // Wire up heart icon to favorites

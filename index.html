@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="styles.css">
 </head>
 
-<body>
+<body> 
 
 <!-- HEADER -->
 <header class="header">
@@ -25,14 +25,14 @@
         <input id="searchInput" type="text" placeholder="Search" onkeydown="if(event.key==='Enter') searchProduct()">
         <button onclick="searchProduct()">🔍</button>
     
-</div>
+</div> 
 
        <div class="icon">
     <a href="cart.html">
         🛒
         <span class="badge cart-badge">0</span>
     </a>
-</div>
+</div> 
         <div class="icon" id="userIcon" style="cursor:pointer;">👤</div>
     </div>
 </header>
@@ -259,25 +259,19 @@
     </div>
     <div class="menu-item" onclick="location.href='cart.html'" style="cursor:pointer;">🛒 Cart</div>
 
-    <!-- categories -->
-    <div class="menu-item" onclick="toggleDropdown('catDropdown')">
-        ☰ Categories ▾
-    </div>
-    <div class="dropdown" id="catDropdown">
-        <div>Item 1</div>
-        <div>Item 2</div>
-        <div>Item 3</div>
-    </div>
-
     <!-- brands -->
     <div class="menu-item" onclick="toggleDropdown('brandDropdown')">
         ☰ Brands ▾
     </div>
     <div class="dropdown" id="brandDropdown">
-        <div>Asus</div>
-        <div>Msi</div>
-        <div>Razer</div>
-        <div>Amd</div>
+        <div onclick="location.href='product-list.html?search=asus'" style="cursor:pointer;">Asus</div>
+        <div onclick="location.href='product-list.html?search=msi'" style="cursor:pointer;">Msi</div>
+        <div onclick="location.href='product-list.html?search=razer'" style="cursor:pointer;">Razer</div>
+        <div onclick="location.href='product-list.html?search=amd'" style="cursor:pointer;">Amd</div>
+        <div onclick="location.href='product-list.html?search=intel'" style="cursor:pointer;">Intel</div>
+        <div onclick="location.href='product-list.html?search=nvidia'" style="cursor:pointer;">Nvidia</div>
+        <div onclick="location.href='product-list.html?search=gigabite'" style="cursor:pointer;">Gigabite</div>
+        <div onclick="location.href='product-list.html?search=logitech'" style="cursor:pointer;">Logitech</div>
     </div>
 
 </div>
