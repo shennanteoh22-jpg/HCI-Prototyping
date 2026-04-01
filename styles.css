@@ -4045,10 +4045,10 @@ main,
 }
 .products-heading { text-align: center !important; margin: 0 auto; width: 100%; }
 
-/* Product list grid — 7 columns, 5 rows per page */
+/* Product list grid — 5 columns per row */
 .products-grid1 {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     column-gap: 16px;
     row-gap: 48px;
     padding: 0;
