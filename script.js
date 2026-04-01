@@ -1082,6 +1082,8 @@ function renderComparePage() {
         fill('cTDP',          s.tdp);
         var viewLink = document.getElementById('cViewDetail');
         if (viewLink) viewLink.href = 'product-detail.html?id=' + product.id;
+        var addCartBtn = document.getElementById('cAddCart');
+        if (addCartBtn) addCartBtn.onclick = function() { addItemToCart(currentId); };
 
         var imgBox = document.getElementById('cProductImage');
         if (imgBox && product.image) {

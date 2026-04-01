@@ -3,7 +3,14 @@
     "allow": [
       "Bash(grep -l \"product picture\\\\|product-image\" \"c:/Users/User/OneDrive/Desktop/PC component/\"*.html)",
       "Bash(grep -rn \"product picture\\\\|>IMG<\\\\|>Image 1<\\\\|>Image 2<\\\\|>Image 3<\\\\|PRODUCT.*IMAGE\\\\|product<br>picture\\\\|>img<\" \"c:/Users/User/OneDrive/Desktop/PC component/\"*.html)",
-      "Bash(grep -rn \"cart-img\\\\|order-img\\\\|receipt-img\\\\|checkout-img\" \"c:/Users/User/OneDrive/Desktop/PC component/\"*.html \"c:/Users/User/OneDrive/Desktop/PC component/script.js\")"
+      "Bash(grep -rn \"cart-img\\\\|order-img\\\\|receipt-img\\\\|checkout-img\" \"c:/Users/User/OneDrive/Desktop/PC component/\"*.html \"c:/Users/User/OneDrive/Desktop/PC component/script.js\")",
+      "Bash(sed -i 's/<title>Product List - Brian PC Component<\\\\/title>/<title>Shopping Cart - Brian PC Component<\\\\/title>/' cart.html)",
+      "Bash(sed -i 's/<title>Compare Product - Brian PC Component<\\\\/title>/<title>Checkout - Brian PC Component<\\\\/title>/' checkout.html)",
+      "Bash(for f:*)",
+      "Bash(do)",
+      "Bash(sed -i 's/<input type=\"\"checkbox\"\"> 8-16 characters/<input type=\"\"checkbox\"\" id=\"\"rule-length\"\"> 8-16 characters/g' \"$f\")",
+      "Bash(sed -i 's/<input type=\"\"checkbox\"\"> At least 1 special character/<input type=\"\"checkbox\"\" id=\"\"rule-special\"\"> At least 1 special character/g' \"$f\")",
+      "Bash(sed -i 's/<input type=\"\"checkbox\"\"> At least 1 uppercase letter/<input type=\"\"checkbox\"\" id=\"\"rule-upper\"\"> At least 1 uppercase letter/g' \"$f\")"
     ]
   }
 }

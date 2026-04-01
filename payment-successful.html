@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Payment Successful - Brian PC Component</title>
     <link rel="stylesheet" href="styles.css">
+    <style>body { zoom: 1.75; } .header { zoom: 0.70; } .footer { zoom: 0.70; }</style>
 </head>
 <body>
     <!-- HEADER -->
@@ -69,19 +70,19 @@
             <div class="order-summary-details">
                 <div class="summary-row">
                     <span class="label">Amount</span>
-                    <span class="value">RM (x.xx)</span>
+                    <span class="value" id="psAmount">—</span>
                 </div>
                 <div class="summary-row">
                     <span class="label">Order ID</span>
-                    <span class="value">xxxxxxxx</span>
+                    <span class="value" id="psOrderId">—</span>
                 </div>
                 <div class="summary-row">
                     <span class="label">Payment Method</span>
-                    <span class="value">E-Wallet</span>
+                    <span class="value" id="psPayMethod">—</span>
                 </div>
                 <div class="summary-row">
                     <span class="label">Email</span>
-                    <span class="value">xxxxxx@gmail.com</span>
+                    <span class="value" id="psEmail">—</span>
                 </div>
             </div>
 
@@ -179,9 +180,18 @@
 
     <script src="script.js"></script>
     <script>
+        (function() {
+            const order = JSON.parse(localStorage.getItem('lastOrder') || 'null');
+            if (!order) return;
+            const el = id => document.getElementById(id);
+            if (el('psAmount'))    el('psAmount').textContent    = 'RM ' + order.grandTotal.toFixed(2);
+            if (el('psOrderId'))   el('psOrderId').textContent   = order.orderId;
+            if (el('psPayMethod')) el('psPayMethod').textContent = order.paymentMethod;
+            if (el('psEmail'))     el('psEmail').textContent     = order.customer.email || '—';
+        })();
+
         function downloadReceipt() {
-            alert('Receipt download functionality to be implemented');
-            // Will implement actual download functionality
+            alert('PDF download functionality to be implemented');
         }
     </script>
 </body>

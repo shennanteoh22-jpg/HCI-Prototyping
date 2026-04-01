@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Compare Product - Brian PC Component</title>
     <link rel="stylesheet" href="styles.css">
+    <style>body { zoom: 1.75; } .header { zoom: 0.70; } .footer { zoom: 0.70; }</style>
 </head>
 <body>
     <!-- HEADER -->
@@ -27,8 +28,8 @@
     
 </div>
 
-        <div class="icon">🛒<span class="badge">2</span></div>
-        <div class="icon"onclick="openLogin()">👤<span class="badge">1</span></div>
+        <div class="icon"><a href="cart.html">🛒<span class="badge cart-badge">0</span></a></div>
+        <div class="icon" id="userIcon" style="cursor:pointer;">👤</div>
     </div>
 </header>
 
@@ -111,9 +112,9 @@
                         </tbody>
                     </table>
 
-                    <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:12px;">
-                        <a href="index.html" class="view-detail-link" style="flex:1;text-align:center;">Back to Main Page</a>
-                        <a href="product-detail.html" class="view-detail-link" id="cViewDetail" style="flex:1;text-align:center;">View Product Detail</a>
+                    <div style="display:flex;justify-content:space-between;align-items:stretch;gap:12px;margin-top:12px;">
+                        <button class="view-detail-link" id="cAddCart" style="flex:1;text-align:center;box-sizing:border-box;">Add to Cart</button>
+                        <a href="product-detail.html" class="view-detail-link" id="cViewDetail" style="flex:1;text-align:center;box-sizing:border-box;">View Product Detail</a>
                     </div>
                 </div>
 
@@ -204,6 +205,64 @@
     Copyright 2026.
   </div>
 </footer>
+
+<!-- LOGIN POPUP -->
+<div class="login-overlay" id="loginOverlay" onclick="closeLogin()"></div>
+<div class="login-popup" id="loginPopup">
+    <button class="login-close" onclick="closeLogin()">✕</button>
+    <h2>Login</h2>
+    <label>Email:</label>
+    <div class="password-box"><input type="email" id="loginEmail" placeholder="E.g. user@gmail.com"></div>
+    <label>Password:</label>
+    <div class="password-box">
+        <input type="password" id="loginPasswordInput" placeholder="Enter your password">
+        <span onclick="togglePassword('loginPasswordInput')">👁</span>
+    </div>
+    <div class="forgot">Forget Password?</div>
+    <button class="login-btn" onclick="doLogin()">Login</button>
+    <div class="divider1"><span>or continue with</span></div>
+    <button class="social-btn google" onclick="doGoogleLogin()">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg">
+        google login
+    </button>
+    <button class="social-btn apple" onclick="doAppleLogin()">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apple/apple-original.svg">
+        apple login
+    </button>
+    <div class="signup-text">
+        Don't have an account? <span onclick="goSignup()" style="cursor:pointer;text-decoration:underline;">Sign Up</span>
+    </div>
+</div>
+
+<!-- SIGNUP POPUP -->
+<div class="signup-overlay" id="signupOverlay"></div>
+<div class="signup-popup" id="signupPopup">
+    <button class="signup-close" onclick="closeSignup()">✕</button>
+    <h2>Signup</h2>
+    <label>Email:</label>
+    <div class="password-row"><input type="email" id="signupEmailInput" placeholder="E.g. user@gmail.com"></div>
+    <label>Password:</label>
+    <div class="password-row">
+        <input type="password" id="signupPasswordInput" placeholder="Enter your password" oninput="checkPasswordRules(this.value)">
+        <span class="eye" onclick="togglePassword('signupPasswordInput')">👁</span>
+    </div>
+    <div class="password-rules">
+        <label><input type="checkbox" id="rule-length"> 8-16 characters</label>
+        <label><input type="checkbox" id="rule-special"> At least 1 special character</label>
+        <label><input type="checkbox" id="rule-upper"> At least 1 uppercase letter</label>
+        <label><input type="checkbox" id="rule-lower"> At least 1 lowercase letter</label>
+        <label><input type="checkbox" id="rule-number"> At least 1 number</label>
+    </div>
+    <label>Confirm password:</label>
+    <div class="password-row">
+        <input type="password" id="confirmPassword" placeholder="Confirm your password">
+        <span class="eye" onclick="togglePassword('confirmPassword')">👁</span>
+    </div>
+    <button class="signup-btn" onclick="doSignup()">Sign Up</button>
+    <div class="login-text">
+        Already have an account? <span onclick="goLogin()" style="cursor:pointer;">Login</span>
+    </div>
+</div>
 
     <script src="script.js"></script>
 </body>
