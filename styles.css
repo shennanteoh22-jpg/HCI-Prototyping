@@ -3972,10 +3972,10 @@ main,
     padding: 8px;
 }
 
-/* Home products grid — 6 columns, wraps into rows */
+/* Home products grid — 5 columns, wraps into rows */
 .products-section .products-grid {
     display: grid;
-    grid-template-columns: repeat(6, 160px);
+    grid-template-columns: repeat(5, 160px);
     gap: 16px;
     padding: 8px;
 }
