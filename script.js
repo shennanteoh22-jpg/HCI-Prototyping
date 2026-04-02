@@ -1045,22 +1045,19 @@ function generateProductSpecs(product) {
 // ============================================================
 function renderComparePage() {
     var params    = new URLSearchParams(window.location.search);
-    var currentId = parseInt(params.get('id')) || 0;
-    var keep      = params.get('keep') || 'left'; // 'left' = green (default), 'right' = orange
-    var product   = products.find(function(p) { return p.id === currentId; });
 
-    // Apply orange colour to left side if keeping the right/orange product
-    if (keep === 'right') {
-        var ths = document.querySelectorAll('.specs-table thead th');
-        ths.forEach(function(th) {
-            th.style.backgroundColor = '#FFA500';
-            th.style.color = 'white';
-        });
-        var altRows = document.querySelectorAll('.specs-table tr.spec-alt');
-        altRows.forEach(function(tr) {
-            tr.style.backgroundColor = '#FFA500';
-        });
-    }
+    // New switch-mode params (coming from compare-products.html Switch button)
+    var switchId  = parseInt(params.get('switchId')) || 0;
+    var keepId    = parseInt(params.get('keepId'))   || 0;
+    var keepSide  = params.get('keepSide') || '';   // 'left' or 'right'
+
+    // Legacy params (coming from product-detail.html Compare button)
+    var legacyId  = parseInt(params.get('id')) || 0;
+    var keep      = params.get('keep') || 'left';
+
+    // currentId = the product shown in the left panel
+    var currentId = switchId || legacyId;
+    var product   = products.find(function(p) { return p.id === currentId; });
 
     // Populate left side if product found
     if (product) {
@@ -1098,13 +1095,22 @@ function renderComparePage() {
     grid.innerHTML = '';
 
     products.forEach(function(p) {
-        // Build compare URL: if keep=right, currentId is id2; otherwise id1
-        var compareUrl = keep === 'right'
-            ? 'compare-products.html?id1=' + p.id + '&id2=' + currentId
-            : 'compare-products.html?id1=' + currentId + '&id2=' + p.id;
+        var compareUrl;
+        if (switchId) {
+            // Switch mode: clicking a product replaces switchId, keeping keepId on its side
+            compareUrl = keepSide === 'right'
+                ? 'compare-products.html?id1=' + p.id + '&id2=' + keepId
+                : 'compare-products.html?id1=' + keepId + '&id2=' + p.id;
+        } else {
+            // Legacy mode: keep currentId on its side
+            compareUrl = keep === 'right'
+                ? 'compare-products.html?id1=' + p.id + '&id2=' + currentId
+                : 'compare-products.html?id1=' + currentId + '&id2=' + p.id;
+        }
 
         var card = document.createElement('div');
-        card.className = 'compare-product-card';
+        // Highlight the kept product so the user can see which item is already being compared
+        card.className = 'compare-product-card' + (p.id === keepId ? ' compare-product-card--selected' : '');
         card.innerHTML =
             '<div class="compare-product-image" style="cursor:pointer;background:#fff;" onclick="location.href=\'compare-product.html?id=' + p.id + '\'">' +
                 (p.image ? '<img src="' + p.image + '" alt="' + p.name + '" style="width:100%;height:100%;object-fit:contain;">' : '') +
@@ -1163,14 +1169,16 @@ function renderCompareProducts() {
     var p2AddCart = document.getElementById('p2AddCart');
     if (p2AddCart && p2) p2AddCart.onclick = function() { addItemToCart(id2); };
 
-    // Switch buttons: clicking left Switch keeps id2, clicking right Switch keeps id1
+    // Switch buttons: show the switching product in the panel; clicking a grid item replaces it
+    // p2Switch is in the left column (switch id1, keep id2 on right)
+    // p1Switch is in the right column (switch id2, keep id1 on left)
     var p1Switch = document.getElementById('p1Switch');
     if (p1Switch) p1Switch.onclick = function() {
-        location.href = 'compare-product.html?id=' + id2 + '&keep=right';
+        location.href = 'compare-product.html?switchId=' + id2 + '&keepId=' + id1 + '&keepSide=left';
     };
     var p2Switch = document.getElementById('p2Switch');
     if (p2Switch) p2Switch.onclick = function() {
-        location.href = 'compare-product.html?id=' + id1 + '&keep=left';
+        location.href = 'compare-product.html?switchId=' + id1 + '&keepId=' + id2 + '&keepSide=right';
     };
 }
 

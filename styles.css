@@ -1090,7 +1090,7 @@ textarea { width: 100%; border: 1px solid #000; background: #fff; color: #000; r
     overflow-x: hidden;
     width: 100%;
     margin: 0 auto;
-    justify-items: center;
+    justify-items: stretch;
 }
 
 .compare-product-card {
@@ -1100,7 +1100,13 @@ textarea { width: 100%; border: 1px solid #000; background: #fff; color: #000; r
     flex-direction: column;
     align-items: center;
     gap: 5px;
-    width: 150px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.compare-product-card--selected {
+    border: 2px solid #f59e0b;
+    background: #fffbea;
 }
 
 .compare-product-image {
@@ -4069,10 +4075,10 @@ main,
     padding: 8px;
 }
 
-/* Home products grid — 4 columns, wraps into rows */
+/* Home products grid — 5 columns, wraps into rows */
 .products-section .products-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     gap: 16px;
     padding: 8px;
 }
