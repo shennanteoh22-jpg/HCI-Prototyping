@@ -940,6 +940,7 @@ function renderHomeGrid(page) {
     const grid = document.getElementById('homeGrid');
     if (!grid) return;
     grid.innerHTML = '';
+
     const start = (page - 1) * HOME_ITEMS_PER_PAGE;
     products.slice(start, start + HOME_ITEMS_PER_PAGE).forEach(function(p) {
         const card = document.createElement('div');

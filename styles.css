@@ -3828,6 +3828,44 @@ body { background: #ffffff; color: #1a1a1a; font-family: 'Inter', 'Helvetica Neu
 
 /* ===== PAGINATION LAYOUT ===== */
 
+/* ===== SORT BAR ===== */
+.sort-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 16px;
+    width: 100%;
+    box-sizing: border-box;
+    background: #f5f5f5;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+}
+.sort-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #111;
+    white-space: nowrap;
+}
+.sort-select {
+    appearance: none;
+    -webkit-appearance: none;
+    background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23333'/%3E%3C/svg%3E") no-repeat right 10px center;
+    background-size: 8px;
+    border: 1px solid #bbb;
+    border-radius: 4px;
+    padding: 5px 28px 5px 10px;
+    font-size: 13px;
+    font-weight: 500;
+    color: #222;
+    cursor: pointer;
+    min-width: 130px;
+    transition: border-color 0.15s;
+}
+.sort-select:focus {
+    outline: none;
+    border-color: #555;
+}
+
 /* Heading row: "products" title left, ← ✕ → nav buttons right */
 .product-heading-row {
     display: flex;

@@ -35,10 +35,25 @@ onkeydown="if(event.key==='Enter') searchProduct()">
 </header>
 
 
+<!-- SORT BAR – full-width strip between header and Product heading -->
+<div class="sort-bar">
+  <span class="sort-label">Sort by</span>
+  <select id="sortName" class="sort-select">
+    <option value="" hidden>Name</option>
+    <option value="name_asc">name: A to Z</option>
+    <option value="name_desc">name: Z to A</option>
+  </select>
+  <select id="sortPrice" class="sort-select">
+    <option value="" hidden>Price</option>
+    <option value="price_low_high">price: LOW to HIGH</option>
+    <option value="price_high_low">price: HIGH to LOW</option>
+  </select>
+</div>
+
 <!-- MAIN -->
 <main class="product-main">
 
-  <!-- HEADING ROW: title left, ← 1 2 3 → nav top-right -->
+  <!-- HEADING ROW -->
   <div class="product-heading-row">
     <h2 class="products-heading">Product</h2>
   </div>
