@@ -1199,7 +1199,14 @@ function closeMenu() {
     if (o) o.classList.remove('active');
 }
 document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape') closeMenu();
+    if (e.key !== 'Escape') return;
+    const menuOpen   = document.getElementById('sideMenu')?.classList.contains('open');
+    const loginOpen  = document.getElementById('loginPopup')?.style.display === 'block';
+    const signupOpen = document.getElementById('signupPopup')?.style.display === 'block';
+    if (menuOpen)   { closeMenu();   return; }
+    if (signupOpen) { closeSignup(); return; }
+    if (loginOpen)  { closeLogin();  return; }
+    history.back();
 });
 function toggleDropdown(id) {
     const el = document.getElementById(id);
